@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Vehicle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h2 {
+      color: #b58900;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #fbc02d;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #fdd835;
+    }
+
+    a {
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #b58900;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Add New Vehicle</h2>
+    <form method="post" action="/add_vehicle">
+      <input type="text" name="plate_number" placeholder="Plate Number" required>
+      <input type="text" name="model" placeholder="Model" required>
+      <input type="text" name="driver_name" placeholder="Driver Name">
+      <input type="text" name="department" placeholder="Department">
+      <select name="status">
+        <option value="Active">Active</option>
+        <option value="Under Maintenance">Under Maintenance</option>
+        <option value="Out of Service">Out of Service</option>
+      </select>
+      <input type="date" name="last_maintenance" placeholder="Last Maintenance">
+      <input type="date" name="next_maintenance" placeholder="Next Maintenance">
+      <button type="submit">Save Vehicle</button>
+    </form>
+    <a href="/home">⬅ Back to Dashboard</a>
+  </div>
+</body>
+</html>

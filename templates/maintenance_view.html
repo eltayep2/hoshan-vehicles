@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maintenance Request - Hoshan Group</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background:#f5f6fa;
+      font-family:"Segoe UI",sans-serif;
+      color:#333;
+      padding:40px 60px;
+    }
+    .logo { display:block; margin:0 auto 25px auto; width:150px; }
+    h4 {
+      color:#b8860b;
+      font-weight:700;
+      text-align:center;
+      margin-bottom:30px;
+      text-transform:uppercase;
+    }
+    table {
+      width:100%;
+      background:#fff;
+      border-collapse:collapse;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border:1px solid #e0e0e0;
+      padding:10px 12px;
+      text-align:center;
+      font-size:14px;
+      vertical-align:middle;
+    }
+    th {
+      background:#ffcc33;
+      color:#fff;
+      font-weight:600;
+      letter-spacing:0.3px;
+    }
+    tr:nth-child(even) { background:#fafafa; }
+    tr:hover { background:#fffbe7; }
+    .info-box {
+      margin-top:25px;
+      background:#fff;
+      border:1px solid #ffcc33;
+      border-left:5px solid #ffcc33;
+      padding:15px 20px;
+      border-radius:8px;
+      box-shadow:0 1px 4px rgba(0,0,0,0.05);
+    }
+    .info-box strong { color:#b8860b; }
+    .footer {
+      text-align:center;
+      color:#aaa;
+      font-size:13px;
+      margin-top:40px;
+    }
+    .print-btn {
+      background:#ffcc33;
+      color:#fff;
+      border:none;
+      padding:6px 14px;
+      border-radius:5px;
+      font-size:13px;
+      float:right;
+      margin-bottom:10px;
+    }
+    .print-btn:hover { background:#e6b800; }
+  </style>
+</head>
+<body>
+
+  <img src="{{ url_for('static', filename='hoshan_logo.png') }}" alt="Hoshan Logo" class="logo">
+
+  <h4>Maintenance Request Report</h4>
+
+  <button class="print-btn" onclick="window.print()">🖨 Print</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Plate Number</th>
+        <th>Driver Name</th>
+        <th>Project</th>
+        <th>Region</th>
+        <th>Status</th>
+        <th>Maintenance Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in vehicles %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ v[1] }}</td>
+        <td>{{ v[11] or '—' }}</td>
+        <td>{{ v[12] or '—' }}</td>
+        <td>{{ v[19] or '—' }}</td>
+        <td>{{ v[7] or '—' }}</td>
+        <td style="color:#b8860b; font-weight:500;">{{ desc }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Date:</strong> {{ request_date }} <br>
+    <strong>Requested By:</strong> {{ session['emp_no'] }}
+  </div>
+
+  <div class="footer">Hoshan Group © 2025</div>
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vehicles Dashboard - Hoshan Group</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body { background:#f5f6fa; font-family:"Segoe UI",sans-serif; color:#333; }
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 180px; height: 100vh;
+      background: #fff; border-right: 2px solid #ffcc33;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 20px; gap: 10px;
+    }
+    .sidebar img { width:120px; margin-bottom:10px; }
+    .sidebar a {
+      width:140px; text-align:center; padding:7px 0;
+      text-decoration:none; color:#b8860b; font-weight:600;
+      border-radius:6px; transition:all 0.2s;
+    }
+    .sidebar a:hover, .sidebar a.active { background:#ffcc33; color:#fff; }
+    .main-content { margin-left:200px; padding:20px 40px; }
+    .topbar {
+      background:#ffcc33; color:#fff; padding:10px 20px;
+      border-radius:8px; display:flex; justify-content:space-between;
+      align-items:center; margin:20px 0; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    .stat-card {
+      background:#fff; border-radius:10px; text-align:center;
+      padding:10px; border:1px solid #eee; color:#b8860b;
+      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+    }
+    .btn-gold { background:#ffcc33; color:#fff; border:none; }
+    .btn-gold:hover { background:#e6b800; }
+    .btn-sm-custom { padding:3px 6px; font-size:12px; margin:1px; }
+    .table { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+    .table thead { background:#ffcc33; color:#fff; }
+    footer { text-align:center; color:#999; margin-top:30px; font-size:13px; }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="{{ url_for('static', filename='hoshan_logo.png') }}" alt="Hoshan Logo">
+    <hr style="width:80%; margin:5px auto; border-color:#ffcc33;">
+    <a href="/home" class="{% if region == 'ALL' %}active{% endif %}">All</a>
+    <a href="/region/Najran" class="{% if region == 'Najran' %}active{% endif %}">Najran</a>
+    <a href="/region/Jeddah" class="{% if region == 'Jeddah' %}active{% endif %}">Jeddah</a>
+    <a href="/region/Asser" class="{% if region == 'Asser' %}active{% endif %}">Asser</a>
+    <a href="/region/Jazan" class="{% if region == 'Jazan' %}active{% endif %}">Jazan</a>
+    <a href="/region/Baha" class="{% if region == 'Baha' %}active{% endif %}">Baha</a>
+    <a href="/region/Riyadh" class="{% if region == 'Riyadh' %}active{% endif %}">Riyadh</a>
+    <a href="/region/Dammam" class="{% if region == 'Dammam' %}active{% endif %}">Dammam</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <div class="left d-flex align-items-center gap-2">
+        <h5 class="m-0">Vehicles Dashboard</h5>
+      </div>
+      <div>
+        👤 {{ session['emp_no'] }}
+        <a href="{{ url_for('logout') }}" class="btn btn-light btn-sm ms-2">Logout</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-3 mb-3">
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Total</div><h5>{{ total }}</h5></div></div>
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Active</div><h5>{{ active }}</h5></div></div>
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Inactive</div><h5>{{ inactive }}</h5></div></div>
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Maintenance</div><h5>{{ maintenance }}</h5></div></div>
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Rented</div><h5>{{ rented }}</h5></div></div>
+      <div class="col-6 col-md-2"><div class="stat-card"><div>Modified</div><h5>{{ modified }}</h5></div></div>
+    </div>
+
+    <!-- Import / Export + Maintenance -->
+    <div class="d-flex align-items-center mb-3" style="gap:10px;">
+      <form method="POST" action="/import_excel" enctype="multipart/form-data" class="d-flex align-items-center" style="gap:5px;">
+        <input type="hidden" name="region_name" value="{{ region }}">
+        {% if session['region'] == 'ALL' %}
+          <input type="file" name="excel_file" accept=".xlsx" required style="display:none;" id="excelInput">
+          <button type="button" class="btn btn-outline-warning btn-sm" onclick="document.getElementById('excelInput').click()">📥 Import</button>
+          <button type="submit" class="btn btn-gold btn-sm">Upload</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary btn-sm" disabled title="Admins only">📥 Import (Admins only)</button>
+        {% endif %}
+      </form>
+      <a href="/export_excel?region={{ region }}" class="btn btn-outline-warning btn-sm">📤 Export</a>
+      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#maintenanceModal">🧰 New Maintenance Request</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle text-center">
+        <thead>
+          <tr><th><input type="checkbox" id="select-all"></th><th>ID</th><th>Plate</th><th>Driver</th><th>Status</th><th>Project</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          {% for v in vehicles %}
+          <tr>
+            <td><input type="checkbox" class="vehicle-checkbox" value="{{ v[0] }}"></td>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[11] }}</td>
+            <td>{{ v[7] }}</td>
+            <td>{{ v[12] }}</td>
+            <td>
+              <a href="/vehicle/{{ v[0] }}" class="btn btn-outline-primary btn-sm-custom" title="View">👁</a>
+              <a href="/edit_vehicle/{{ v[0] }}" class="btn btn-outline-success btn-sm-custom" title="Edit">✏️</a>
+              <a href="/delete_vehicle/{{ v[0] }}" class="btn btn-outline-danger btn-sm-custom" onclick="return confirm('Delete this vehicle?')" title="Delete">🗑️</a>
+              <!-- HO / ID -->
+              <div class="d-inline">
+                {% if v[16] %}<a href="/uploads/{{ v[16] }}" target="_blank" class="btn btn-outline-warning btn-sm-custom">📄 HO</a>{% endif %}
+                <form action="/upload_handover/{{ v[0] }}" method="post" enctype="multipart/form-data" class="d-inline">
+                  <input type="file" name="handover_pdf" accept=".pdf" required style="display:none;" onchange="this.form.submit()">
+                  <button type="button" class="btn btn-outline-secondary btn-sm-custom" onclick="this.previousElementSibling.click()">+HO</button>
+                  <a href="/old_files/{{ v[0] }}/HO" class="btn btn-outline-dark btn-sm-custom" title="Old HO Files">📚</a>
+                </form>
+              </div>
+              <div class="d-inline">
+                {% if v[17] %}<a href="/uploads/{{ v[17] }}" target="_blank" class="btn btn-outline-info btn-sm-custom">🪪 ID</a>{% endif %}
+                <form action="/upload_driver_id/{{ v[0] }}" method="post" enctype="multipart/form-data" class="d-inline">
+                  <input type="file" name="driver_id_pdf" accept=".pdf" required style="display:none;" onchange="this.form.submit()">
+                  <button type="button" class="btn btn-outline-secondary btn-sm-custom" onclick="this.previousElementSibling.click()">+ID</button>
+                  <a href="/old_files/{{ v[0] }}/ID" class="btn btn-outline-dark btn-sm-custom" title="Old ID Files">📚</a>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="7" class="text-muted">No vehicles found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- إضافة وصف وزر إنشاء صيانة لعدة سيارات -->
+      <div class="mt-3">
+        <textarea id="multiDesc" class="form-control form-control-sm mb-2" rows="2" placeholder="Enter maintenance details for selected vehicles..."></textarea>
+        <button id="multiMaintenanceBtn" class="btn btn-gold w-100 btn-sm">🛠 Create Maintenance Request for Selected</button>
+      </div>
+    </div>
+
+    <footer>Hoshan Group © 2025</footer>
+  </div>
+
+  <!-- Modal (يبقى كما هو) -->
+  <div class="modal fade" id="maintenanceModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h6 class="modal-title">New Maintenance Request</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="maintenanceForm">
+            <div class="mb-2">
+              <label class="form-label">Select Vehicle:</label>
+              <select class="form-select form-select-sm" id="vehicleSelect" required>
+                {% for v in vehicles %}
+                  <option value="{{ v[0] }}">{{ v[1] }} - {{ v[11] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Maintenance Description:</label>
+              <textarea id="maintenanceDesc" class="form-control form-control-sm" rows="3" placeholder="e.g., Oil change, AC repair..." required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-gold btn-sm" type="button" onclick="generateMaintenance()">Create Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // single request (يبقى كما هو)
+  function generateMaintenance() {
+    const select = document.getElementById('vehicleSelect');
+    const desc = document.getElementById('maintenanceDesc').value.trim();
+    if (!select || !select.value) return alert('Please select a vehicle.');
+    if (!desc) return alert('Please enter maintenance details.');
+    const formData = new FormData();
+    formData.append('vehicle_id', select.value);
+    formData.append('desc', desc);
+    fetch('/maintenance_request', { method: 'POST', body: formData })
+      .then(res => res.text()).then(html => {
+        const newWin = window.open('', '_blank');
+        newWin.document.write(html); newWin.document.close();
+      })
+      .catch(err => { alert('Error while creating maintenance request.'); console.error(err); });
+  }
+
+  // select all
+  document.getElementById("select-all").addEventListener("change", function () {
+    document.querySelectorAll(".vehicle-checkbox").forEach(cb => cb.checked = this.checked);
+  });
+
+  // multi request
+  document.getElementById("multiMaintenanceBtn").addEventListener("click", function () {
+    const selected = Array.from(document.querySelectorAll(".vehicle-checkbox:checked")).map(cb => cb.value);
+    const desc = document.getElementById("multiDesc").value.trim();
+    if (selected.length === 0) return alert("Please select at least one vehicle.");
+    if (!desc) return alert("Please enter maintenance details.");
+    const formData = new FormData();
+    formData.append("vehicle_ids", JSON.stringify(selected));
+    formData.append("desc", desc);
+    fetch("/maintenance_request_multi", { method: "POST", body: formData })
+      .then(res => res.text()).then(html => {
+        const newWin = window.open("", "_blank");
+        newWin.document.write(html); newWin.document.close();
+      })
+      .catch(err => { alert("Error while creating maintenance request."); console.error(err); });
+  });
+  </script>
+
+</body>
+</html>

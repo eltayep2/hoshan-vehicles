@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Vehicle - Project Vehicles Management</title>
+  <style>
+    body {font-family: Arial, sans-serif; background:#f2f2f2; padding:20px;}
+    .box {background:white; padding:20px; border-radius:10px; max-width:500px;}
+    input {width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:5px;}
+    button {padding:10px 15px; background:#007bff; border:none; color:white; border-radius:5px; cursor:pointer;}
+    button:hover {background:#0069d9;}
+    .result {margin-top:20px; background:#fff; padding:15px; border-radius:8px;}
+    a {text-decoration:none;}
+  </style>
+</head>
+<body>
+  <a href="{{ url_for('dashboard') }}">&larr; Back to dashboard</a>
+  <h2>Search Vehicle</h2>
+  <div class="box">
+    <form method="post">
+      <label>Plate Number</label>
+      <input type="text" name="plate" placeholder="e.g. ABC123" required>
+      <button type="submit">Search</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        <h3>Vehicle Info</h3>
+        <p><strong>Plate:</strong> {{ result.plate }}</p>
+        <p><strong>Vehicle:</strong> {{ result.vehicle }}</p>
+        <p><strong>Status:</strong> {{ result.status }}</p>
+        <p><strong>Current Driver:</strong> {{ result.current_driver }}</p>
+        <p><strong>Last Maintenance:</strong> {{ result.last_maintenance }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

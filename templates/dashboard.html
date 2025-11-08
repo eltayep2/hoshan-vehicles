@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Project Vehicles Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {font-family: Arial, sans-serif; background:#f7f7f7; padding:20px;}
+    .top {display:flex; justify-content:space-between; align-items:center;}
+    .cards {display:flex; gap:15px; margin-top:20px; flex-wrap:wrap;}
+    .card {background:white; padding:20px; border-radius:10px; width:220px; box-shadow:0 0 10px rgba(0,0,0,.05);}
+    a.btn {display:inline-block; padding:8px 12px; background:#007bff; color:white; text-decoration:none; border-radius:5px;}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h2>Project Vehicles Management</h2>
+    <div>
+      Logged in as: {{ user }}
+      | <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Maintenance</h3>
+      <p>Add or view maintenance records.</p>
+      <!-- later: link to /maintenance -->
+    </div>
+    <div class="card">
+      <h3>Vehicle Transfer</h3>
+      <p>Assign vehicle to employee.</p>
+      <!-- later: link to /transfer -->
+    </div>
+    <div class="card">
+      <h3>Search Vehicle</h3>
+      <p>Search by plate number.</p>
+      <a class="btn" href="{{ url_for('search') }}">Search</a>
+    </div>
+  </div>
+</body>
+</html>

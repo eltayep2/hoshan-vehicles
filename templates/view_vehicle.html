@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>View Vehicle</title>
+  <style>
+    body { font-family:Segoe UI, sans-serif; background:#fff; padding:30px; }
+    h2 { color:#b58900; }
+    table { border-collapse:collapse; width:500px; }
+    td { border:1px solid #ddd; padding:8px; }
+    td.label { background:#fff8e1; width:180px; font-weight:600; }
+    a { display:inline-block; margin-top:15px; color:#b58900; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <h2>Vehicle Details</h2>
+  <table>
+    <tr><td class="label">Plate Number</td><td>{{ v[1] }}</td></tr>
+    <tr><td class="label">Vehicle Brand</td><td>{{ v[2] }}</td></tr>
+    <tr><td class="label">Model Year</td><td>{{ v[3] }}</td></tr>
+    <tr><td class="label">Vehicle Supplier</td><td>{{ v[4] }}</td></tr>
+    <tr><td class="label">Vehicle Type</td><td>{{ v[5] }}</td></tr>
+    <tr><td class="label">Vehicle Color</td><td>{{ v[6] }}</td></tr>
+    <tr><td class="label">Vehicle Status</td><td>{{ v[7] }}</td></tr>
+    <tr><td class="label">District</td><td>{{ v[8] }}</td></tr>
+    <tr><td class="label">Iqama No</td><td>{{ v[9] }}</td></tr>
+    <tr><td class="label">EMP No</td><td>{{ v[10] }}</td></tr>
+    <tr><td class="label">EMP Name</td><td>{{ v[11] }}</td></tr>
+    <tr><td class="label">Project</td><td>{{ v[12] }}</td></tr>
+    <tr><td class="label">Previous User</td><td>{{ v[13] }}</td></tr>
+    <tr><td class="label">Tamm Status</td><td>{{ v[14] }}</td></tr>
+    <tr><td class="label">Remarks</td><td>{{ v[15] }}</td></tr>
+  </table>
+  <a href="/home">⬅ Back</a>
+</body>
+</html>
