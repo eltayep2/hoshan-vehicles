@@ -8,7 +8,7 @@ from flask import (
     flash,
     session,
 )
-import sqlite3, os
+import sqlite3, os, json
 import pandas as pd
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -30,7 +30,7 @@ ALLOWED_EXTENSIONS = {"pdf", "xlsx"}
 # admins (super + regions)
 # =========================
 ADMINS = {
-    "eltayep": {"password": "SScc123", "region": "ALL"},  # super admin
+    "eltayep": {"password": "SScc123456", "region": "ALL"},  # super admin
     "E001": {"password": "najran123", "region": "Najran"},
     "E002": {"password": "jeddah123", "region": "Jeddah"},
     "E003": {"password": "asser123", "region": "Asser"},
@@ -116,7 +116,7 @@ def resequence_ids():
 # LOGIN / LOGOUT
 # =========================
 @app.route("/", methods=["GET", "POST"])
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET, POST"])
 def login():
     error = None
     if request.method == "POST":
@@ -565,70 +565,28 @@ def old_files(vehicle_id, file_type):
 
 
 # =========================
-# maintenance request → open page (المحدثة)
+# maintenance request (SINGLE + MULTI) - مدمجة
 # =========================
 @app.route("/maintenance_request", methods=["POST"])
-def maintenance_request():
-    vehicle_id = request.form.get("vehicle_id")
-    desc = request.form.get("desc", "").strip()
-
-    # ✅ تحقق من المدخلات
-    if not vehicle_id or not desc:
-        flash("Maintenance request needs vehicle and description.", "danger")
-        return redirect(url_for("home"))
-
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-
-    # ✅ جلب بيانات السيارة المطلوبة
-    c.execute("SELECT * FROM vehicles WHERE id=?", (vehicle_id,))
-    v = c.fetchone()
-
-    if not v:
-        conn.close()
-        flash("Vehicle not found.", "danger")
-        return redirect(url_for("home"))
-
-    # ✅ تحديث remarks بتاريخ وطلب الصيانة
-    remarks = f"Maintenance Request: {desc}"
-    c.execute(
-        "UPDATE vehicles SET remarks=?, last_modified=? WHERE id=?",
-        (remarks, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), vehicle_id),
-    )
-    conn.commit()
-    conn.close()
-
-    # ✅ تجهيز التاريخ الحالي للعرض
-    request_date = datetime.now().strftime("%Y-%m-%d")
-
-    # ✅ تمرير السيارة إلى صفحة maintenance_view.html للعرض في جدول
-    return render_template(
-        "maintenance_view.html",
-        vehicles=[v],
-        desc=desc,
-        request_date=request_date,
-    )
-
-# =========================
-# maintenance request (MULTI) - الجديدة
-# =========================
 @app.route("/maintenance_request_multi", methods=["POST"])
-def maintenance_request_multi():
-    """إصدار طلب صيانة لعدة سيارات معًا"""
+def maintenance_request_combined():
+    """إصدار طلب صيانة واحدة أو لعدة سيارات"""
     ids_json = request.form.get("vehicle_ids")
     desc = request.form.get("desc", "").strip()
 
-    if not ids_json and not request.form.get("vehicle_id"):
-        flash("Please select one or more vehicles and enter maintenance details.", "danger")
-        return redirect(url_for("home"))
-
+    # حاول نقرأ عدة سيارات من JSON
     try:
-        vehicle_ids = json.loads(ids_json) if ids_json else [request.form.get("vehicle_id")]
+        vehicle_ids = json.loads(ids_json) if ids_json else []
     except Exception:
+        vehicle_ids = []
+
+    # لو مافي JSON جاي من الواجهة، جرب نقرأ vehicle_id عادي
+    if not vehicle_ids and request.form.get("vehicle_id"):
         vehicle_ids = [request.form.get("vehicle_id")]
 
+    # تحقق من المدخلات
     if not vehicle_ids or not desc:
-        flash("Invalid data for maintenance request.", "danger")
+        flash("⚠️ Please select one or more vehicles and enter maintenance details.", "danger")
         return redirect(url_for("home"))
 
     conn = sqlite3.connect(DB_PATH)
@@ -642,6 +600,7 @@ def maintenance_request_multi():
     )
     vehicles = c.fetchall()
 
+    # حدث الملاحظات
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for vid in vehicle_ids:
         c.execute(
@@ -662,6 +621,64 @@ def maintenance_request_multi():
         request_date=request_date,
     )
 
+# =========================
+# BULK TRANSFER & BULK DELETE
+# =========================
+
+@app.route("/bulk_transfer", methods=["POST"])
+def bulk_transfer():
+    ids_json = request.form.get("vehicle_ids")
+    target_region = request.form.get("target_region", "").strip()
+
+    try:
+        vehicle_ids = json.loads(ids_json)
+    except Exception:
+        vehicle_ids = []
+
+    if not vehicle_ids or not target_region:
+        flash("⚠️ Please select vehicles and a target region.", "danger")
+        return redirect(url_for("home"))
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    placeholders = ",".join("?" * len(vehicle_ids))
+    c.execute(
+        f"UPDATE vehicles SET region=? WHERE id IN ({placeholders})",
+        (target_region, *vehicle_ids),
+    )
+    conn.commit()
+    conn.close()
+
+    flash(f"🚚 {len(vehicle_ids)} vehicle(s) moved to {target_region}.", "success")
+
+    # ✅ توجيه مباشر إلى المنطقة الجديدة بعد النقل
+    return redirect(url_for("view_region", region_name=target_region))
+
+
+@app.route("/bulk_delete", methods=["POST"])
+def bulk_delete():
+    ids_json = request.form.get("vehicle_ids")
+
+    try:
+        vehicle_ids = json.loads(ids_json)
+    except Exception:
+        vehicle_ids = []
+
+    if not vehicle_ids:
+        flash("⚠️ Please select at least one vehicle to delete.", "danger")
+        return redirect(url_for("home"))
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    placeholders = ",".join("?" * len(vehicle_ids))
+    c.execute(f"DELETE FROM vehicles WHERE id IN ({placeholders})", vehicle_ids)
+    conn.commit()
+    conn.close()
+
+    resequence_ids()
+    flash(f"🗑️ {len(vehicle_ids)} vehicle(s) deleted successfully.", "info")
+
+    return redirect(url_for("home"))
 
 # =========================
 # run
