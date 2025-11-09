@@ -464,6 +464,8 @@
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" id="uploadHOAction">� Upload Handover</a></li>
           <li><a class="dropdown-item" href="#" id="uploadIDAction">🪪 Upload Driver ID</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="returnVerificationAction">🔙 Return Back for Verification</a></li>
         </ul>
       </div>
 
@@ -642,6 +644,81 @@
         <div class="modal-footer">
           <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
           <button class="btn btn-primary btn-sm" type="button" onclick="transferToUser()">Transfer Vehicle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Return Back for Verification Modal -->
+  <div class="modal fade" id="returnVerificationModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-dark">
+          <h6 class="modal-title">🔙 Return Back for Verification</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning alert-sm">
+            <small>Return vehicle back for verification and upload return document.</small>
+          </div>
+          
+          <!-- Vehicle Information -->
+          <div class="card mb-3">
+            <div class="card-header bg-light">
+              <strong>🚗 Vehicle Information</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="mb-1"><strong>Plate Number:</strong> <span id="rvPlateNumber">-</span></p>
+                  <p class="mb-1"><strong>Vehicle Type:</strong> <span id="rvVehicleType">-</span></p>
+                  <p class="mb-1"><strong>Color:</strong> <span id="rvColor">-</span></p>
+                </div>
+                <div class="col-md-6">
+                  <p class="mb-1"><strong>Model:</strong> <span id="rvModel">-</span></p>
+                  <p class="mb-1"><strong>Year:</strong> <span id="rvYear">-</span></p>
+                  <p class="mb-1"><strong>Status:</strong> <span id="rvStatus">-</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current User Information -->
+          <div class="card mb-3">
+            <div class="card-header bg-light">
+              <strong>👤 Current User Information</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="mb-1"><strong>Employee Name:</strong> <span id="rvEmpName">-</span></p>
+                  <p class="mb-1"><strong>Employee Number:</strong> <span id="rvEmpNo">-</span></p>
+                </div>
+                <div class="col-md-6">
+                  <p class="mb-1"><strong>Iqama Number:</strong> <span id="rvIqamaNo">-</span></p>
+                  <p class="mb-1"><strong>Region:</strong> <span id="rvRegion">-</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upload Return Document -->
+          <form id="returnVerificationForm" enctype="multipart/form-data">
+            <input type="hidden" id="rvVehicleId" name="vehicle_id">
+            <div class="mb-3">
+              <label class="form-label"><strong>📄 Upload Return Document (استلام):</strong></label>
+              <input type="file" class="form-control form-control-sm" id="returnDocument" name="return_document" accept=".pdf,.jpg,.jpeg,.png" required>
+              <small class="text-muted">Accepted formats: PDF, JPG, PNG</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label"><strong>Notes (Optional):</strong></label>
+              <textarea class="form-control form-control-sm" id="returnNotes" name="notes" rows="2" placeholder="Enter any additional notes..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-warning btn-sm" type="button" onclick="submitReturnVerification()">Submit Return</button>
         </div>
       </div>
     </div>
@@ -902,6 +979,73 @@
     }
     window.location.href = '/transfer_user/' + selected[0].value;
   });
+
+  // Return Back for Verification Action
+  document.getElementById('returnVerificationAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    if (selected.length === 0) {
+      alert('⚠️ Please select a vehicle first');
+      return;
+    }
+    if (selected.length > 1) {
+      alert('⚠️ Please select only ONE vehicle for this action');
+      return;
+    }
+    
+    // Get vehicle data from the selected row
+    const vehicleId = selected[0].value;
+    const row = selected[0].closest('tr');
+    const cells = row.querySelectorAll('td');
+    
+    // Fill vehicle information (adjust indices based on your table structure)
+    document.getElementById('rvVehicleId').value = vehicleId;
+    document.getElementById('rvPlateNumber').textContent = cells[1].textContent.trim();
+    document.getElementById('rvVehicleType').textContent = cells[2].textContent.trim();
+    document.getElementById('rvModel').textContent = cells[3].textContent.trim();
+    document.getElementById('rvYear').textContent = cells[4].textContent.trim();
+    document.getElementById('rvColor').textContent = cells[5].textContent.trim();
+    document.getElementById('rvEmpName').textContent = cells[6].textContent.trim();
+    document.getElementById('rvEmpNo').textContent = cells[7].textContent.trim();
+    document.getElementById('rvIqamaNo').textContent = cells[8].textContent.trim();
+    document.getElementById('rvStatus').textContent = cells[11].textContent.trim();
+    document.getElementById('rvRegion').textContent = '{{ region }}';
+    
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('returnVerificationModal'));
+    modal.show();
+  });
+
+  // Submit Return Verification
+  function submitReturnVerification() {
+    const form = document.getElementById('returnVerificationForm');
+    const formData = new FormData(form);
+    
+    // Add notes if provided
+    const notes = document.getElementById('returnNotes').value;
+    if (notes) {
+      formData.append('notes', notes);
+    }
+    
+    fetch('/return_verification', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ ' + data.message);
+        bootstrap.Modal.getInstance(document.getElementById('returnVerificationModal')).hide();
+        location.reload();
+      } else {
+        alert('⚠️ ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('⚠️ An error occurred while submitting');
+    });
+  }
 
   // Update selected count when checkboxes change
   document.querySelectorAll('.vehicle-checkbox').forEach(cb => {

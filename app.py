@@ -7,6 +7,7 @@ from flask import (
     send_from_directory,
     flash,
     session,
+    jsonify,
 )
 import sqlite3, os, json
 import pandas as pd
@@ -1236,6 +1237,72 @@ def bulk_delete():
             conn.close()
 
     return redirect(url_for("home"))
+
+# =========================
+# return verification
+# =========================
+@app.route("/return_verification", methods=["POST"])
+@login_required
+def return_verification():
+    """Handle vehicle return for verification with document upload"""
+    vehicle_id = request.form.get("vehicle_id")
+    notes = request.form.get("notes", "")
+    return_doc = request.files.get("return_document")
+    
+    if not vehicle_id:
+        return jsonify({"success": False, "message": "Vehicle ID is required"}), 400
+    
+    if not return_doc:
+        return jsonify({"success": False, "message": "Return document is required"}), 400
+    
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        c = conn.cursor()
+        
+        # Get vehicle info
+        c.execute("SELECT plate_number, emp_name, region FROM vehicles WHERE id=?", (vehicle_id,))
+        vehicle = c.fetchone()
+        
+        if not vehicle:
+            return jsonify({"success": False, "message": "Vehicle not found"}), 404
+        
+        plate_number, emp_name, region = vehicle
+        
+        # Create uploads directory structure
+        upload_dir = os.path.join(UPLOAD_FOLDER, str(vehicle_id))
+        os.makedirs(upload_dir, exist_ok=True)
+        
+        # Save return document
+        filename = secure_filename(return_doc.filename)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"return_verification_{timestamp}_{filename}"
+        filepath = os.path.join(upload_dir, filename)
+        return_doc.save(filepath)
+        
+        # Update vehicle status to "Returned for Verification"
+        c.execute(
+            "UPDATE vehicles SET vehicle_status=?, notes=? WHERE id=?",
+            ("Returned for Verification", notes, vehicle_id)
+        )
+        conn.commit()
+        
+        logger.info(
+            f"Vehicle {plate_number} (ID: {vehicle_id}) returned for verification by {session.get('emp_no')}. "
+            f"Document: {filename}"
+        )
+        
+        return jsonify({
+            "success": True,
+            "message": f"Vehicle {plate_number} returned for verification successfully"
+        })
+    
+    except Exception as e:
+        logger.error(f"Error processing return verification: {e}")
+        return jsonify({"success": False, "message": f"Error: {str(e)}"}), 500
+    
+    finally:
+        if 'conn' in locals():
+            conn.close()
 
 # =========================
 # run
