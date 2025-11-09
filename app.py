@@ -1241,64 +1241,65 @@ def bulk_delete():
 # =========================
 # return verification
 # =========================
-@app.route("/return_verification", methods=["POST"])
+@app.route("/return_verification/<int:vehicle_id>", methods=["GET", "POST"])
 @login_required
-def return_verification():
+def return_verification(vehicle_id):
     """Handle vehicle return for verification with document upload"""
-    vehicle_id = request.form.get("vehicle_id")
-    notes = request.form.get("notes", "")
-    return_doc = request.files.get("return_document")
-    
-    if not vehicle_id:
-        return jsonify({"success": False, "message": "Vehicle ID is required"}), 400
-    
-    if not return_doc:
-        return jsonify({"success": False, "message": "Return document is required"}), 400
     
     try:
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
         
         # Get vehicle info
-        c.execute("SELECT plate_number, emp_name, region FROM vehicles WHERE id=?", (vehicle_id,))
+        c.execute("SELECT * FROM vehicles WHERE id=?", (vehicle_id,))
         vehicle = c.fetchone()
         
         if not vehicle:
-            return jsonify({"success": False, "message": "Vehicle not found"}), 404
+            flash("⚠️ Vehicle not found", "warning")
+            return redirect(url_for("home"))
         
-        plate_number, emp_name, region = vehicle
+        if request.method == "POST":
+            notes = request.form.get("notes", "")
+            return_doc = request.files.get("return_document")
+            
+            if not return_doc:
+                flash("⚠️ Return document is required", "warning")
+                return redirect(url_for("return_verification", vehicle_id=vehicle_id))
+            
+            # Create uploads directory structure
+            upload_dir = os.path.join(UPLOAD_FOLDER, str(vehicle_id))
+            os.makedirs(upload_dir, exist_ok=True)
+            
+            # Save return document
+            filename = secure_filename(return_doc.filename)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"return_verification_{timestamp}_{filename}"
+            filepath = os.path.join(upload_dir, filename)
+            return_doc.save(filepath)
+            
+            # Update vehicle status to "Returned for Verification"
+            c.execute(
+                "UPDATE vehicles SET vehicle_status=?, notes=? WHERE id=?",
+                ("Returned for Verification", notes, vehicle_id)
+            )
+            conn.commit()
+            
+            logger.info(
+                f"Vehicle {vehicle[1]} (ID: {vehicle_id}) returned for verification by {session.get('emp_no')}. "
+                f"Document: {filename}"
+            )
+            
+            flash(f"✅ Vehicle {vehicle[1]} returned for verification successfully", "success")
+            return redirect(url_for("home"))
         
-        # Create uploads directory structure
-        upload_dir = os.path.join(UPLOAD_FOLDER, str(vehicle_id))
-        os.makedirs(upload_dir, exist_ok=True)
-        
-        # Save return document
-        filename = secure_filename(return_doc.filename)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"return_verification_{timestamp}_{filename}"
-        filepath = os.path.join(upload_dir, filename)
-        return_doc.save(filepath)
-        
-        # Update vehicle status to "Returned for Verification"
-        c.execute(
-            "UPDATE vehicles SET vehicle_status=?, notes=? WHERE id=?",
-            ("Returned for Verification", notes, vehicle_id)
-        )
-        conn.commit()
-        
-        logger.info(
-            f"Vehicle {plate_number} (ID: {vehicle_id}) returned for verification by {session.get('emp_no')}. "
-            f"Document: {filename}"
-        )
-        
-        return jsonify({
-            "success": True,
-            "message": f"Vehicle {plate_number} returned for verification successfully"
-        })
+        # GET request - show form
+        conn.close()
+        return render_template("return_verification.html", vehicle=vehicle, region=session.get("region"))
     
     except Exception as e:
         logger.error(f"Error processing return verification: {e}")
-        return jsonify({"success": False, "message": f"Error: {str(e)}"}), 500
+        flash(f"⚠️ Error: {str(e)}", "danger")
+        return redirect(url_for("home"))
     
     finally:
         if 'conn' in locals():

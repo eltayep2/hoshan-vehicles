@@ -1653,3 +1653,191 @@
 2025-11-09 23:17:07,359 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:17:07] "[32mPOST /delete_vehicles HTTP/1.1[0m" 302 -
 2025-11-09 23:17:07,375 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:17:07] "GET /home HTTP/1.1" 200 -
 2025-11-09 23:17:07,408 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:17:07] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:46:39,576 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:46:39,706 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 23:46:39,706 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 23:46:39,722 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 23:46:40,403 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:46:40,440 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 23:46:40,440 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 23:46:45,712 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:46:45] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:46:45,817 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:46:45] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:46:54,404 - __main__ - INFO - 36 records imported and distributed by district. Asser: 4, Baha: 12, Jazan: 4, Najran: 16 by eltayep
+2025-11-09 23:46:54,406 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:46:54] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 23:46:54,419 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:46:54] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:46:54,487 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:46:54] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:47:45,668 - __main__ - INFO - User eltayep logged out
+2025-11-09 23:47:45,668 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:45] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-09 23:47:47,383 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:47] "GET /login HTTP/1.1" 200 -
+2025-11-09 23:47:47,442 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:47] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:47:47,477 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:47] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 23:47:58,324 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 23:47:58,325 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-09 23:47:58,335 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:58] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:47:58,358 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:47:58] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:52:05,004 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:52:06,847 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 23:52:06,848 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 23:52:06,852 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 23:52:08,087 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:52:08,160 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 23:52:08,166 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 23:52:09,372 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:09] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:52:09,440 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:09] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:52:21,278 - __main__ - INFO - User eltayep logged out
+2025-11-09 23:52:21,281 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-09 23:52:21,320 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:21] "GET /login HTTP/1.1" 200 -
+2025-11-09 23:52:21,341 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:21] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:52:21,347 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:21] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 23:52:31,368 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 23:52:31,369 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:31] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-09 23:52:31,376 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:31] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:52:31,396 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:52:31] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:54:07,798 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:54:07,860 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 23:54:07,860 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 23:54:07,860 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 23:54:08,673 - __main__ - INFO - Database initialized successfully
+2025-11-09 23:54:08,703 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 23:54:08,717 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 23:55:21,854 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:55:21] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:55:21,932 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:55:21] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:55:40,473 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:55:40] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-11-09 23:57:05,594 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:05] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:57:05,644 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:05] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:57:20,396 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:20] "GET /?id=d1e4ae3b-6895-4bfc-8a7e-7aa4fbce6903&vscodeBrowserReqId=1762721840358 HTTP/1.1" 200 -
+2025-11-09 23:57:20,452 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:20] "GET /static/hoshan_logo.png HTTP/1.1" 200 -
+2025-11-09 23:57:20,460 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:20] "GET /static/logo_car.png HTTP/1.1" 200 -
+2025-11-09 23:57:43,781 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 23:57:43,781 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:43] "[32mPOST /?id=d1e4ae3b-6895-4bfc-8a7e-7aa4fbce6903&vscodeBrowserReqId=1762721840358 HTTP/1.1[0m" 302 -
+2025-11-09 23:57:43,799 - __main__ - WARNING - Unauthorized access attempt to /home
+2025-11-09 23:57:43,800 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:43] "[32mGET /home HTTP/1.1[0m" 302 -
+2025-11-09 23:57:43,805 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:43] "GET /login HTTP/1.1" 200 -
+2025-11-09 23:57:43,827 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:43] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:57:43,829 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:57:43] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 23:58:11,568 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:58:11] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:58:11,596 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:58:11] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 23:58:23,247 - __main__ - INFO - 1 vehicles deleted by eltayep: IDs ['37']
+2025-11-09 23:58:23,249 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:58:23] "[32mPOST /delete_vehicles HTTP/1.1[0m" 302 -
+2025-11-09 23:58:23,458 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:58:23] "GET /home HTTP/1.1" 200 -
+2025-11-09 23:58:23,481 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 23:58:23] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:03:55,725 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:03:55,834 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-10 00:03:55,834 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-10 00:03:55,834 - werkzeug - INFO -  * Restarting with stat
+2025-11-10 00:03:56,593 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:03:56,624 - werkzeug - WARNING -  * Debugger is active!
+2025-11-10 00:03:56,634 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-10 00:04:48,223 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:04:48,271 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-10 00:04:48,303 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-10 00:04:48,319 - werkzeug - INFO -  * Restarting with stat
+2025-11-10 00:04:48,970 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:04:49,002 - werkzeug - WARNING -  * Debugger is active!
+2025-11-10 00:04:49,002 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-10 00:05:10,438 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:10] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:05:10,655 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:10] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:05:43,231 - __main__ - INFO - User eltayep logged out
+2025-11-10 00:05:43,234 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:43] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-10 00:05:43,284 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:43] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:05:43,306 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:43] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:05:43,320 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:43] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:05:52,408 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:05:52,408 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:05:52,426 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:52] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:05:52,452 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:05:52] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:13,108 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:13] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:06:13,159 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:13] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:16,453 - __main__ - INFO - User eltayep logged out
+2025-11-10 00:06:16,454 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-10 00:06:16,460 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:16] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:06:16,499 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:16] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:16,509 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:16] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:23,485 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:06:23,485 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:06:23,504 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:23] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:06:23,524 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:23] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:57,082 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:06:57,094 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:06:57,098 - __main__ - WARNING - Unauthorized access attempt to /home
+2025-11-10 00:06:57,098 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:57] "[32mGET /home HTTP/1.1[0m" 302 -
+2025-11-10 00:06:57,108 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:57] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:06:57,159 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:57] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:06:57,160 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:06:57] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:08:00,121 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:00] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:08:00,159 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:00] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:08:13,964 - __main__ - INFO - Maintenance request created for 1 vehicles by eltayep
+2025-11-10 00:08:14,018 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:14] "POST /maintenance_request HTTP/1.1" 200 -
+2025-11-10 00:08:14,174 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:14] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:08:45,147 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:45] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-10 00:08:45,161 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:45] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:08:45,199 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:08:45] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:10:26,538 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:10:26] "GET /transfer_user/44 HTTP/1.1" 200 -
+2025-11-10 00:10:52,388 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:10:52] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:11:25,102 - __main__ - INFO - User eltayep logged out
+2025-11-10 00:11:25,104 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:25] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-10 00:11:25,109 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:25] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:11:25,145 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:25] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:11:25,160 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:25] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:11:50,511 - __main__ - WARNING - Unauthorized access attempt to /home
+2025-11-10 00:11:50,511 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:50] "[32mGET /home HTTP/1.1[0m" 302 -
+2025-11-10 00:11:50,522 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:50] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:11:50,552 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:50] "GET /static/hoshan_logo.png HTTP/1.1" 200 -
+2025-11-10 00:11:50,562 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:11:50] "GET /static/logo_car.png HTTP/1.1" 200 -
+2025-11-10 00:12:04,717 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:12:04,717 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:12:04] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:12:04,851 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:12:04] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:12:04,897 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:12:04] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:14:17,574 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:17] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:14:17,623 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:14:27,050 - __main__ - INFO - User eltayep logged out
+2025-11-10 00:14:27,052 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:27] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-10 00:14:27,057 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:27] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:14:27,102 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:27] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:14:27,110 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:27] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:14:39,422 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:14:39,422 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:14:39,440 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:39] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:14:39,476 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:14:39] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:16:36,651 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:16:36] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:16:36,679 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:16:36] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:17:06,492 - __main__ - INFO - User eltayep logged out
+2025-11-10 00:17:06,811 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:06] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-10 00:17:06,817 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:06] "GET /login HTTP/1.1" 200 -
+2025-11-10 00:17:06,846 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:06] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:17:06,846 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:06] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-10 00:17:18,422 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-10 00:17:18,424 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-10 00:17:18,430 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:18] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:17:18,471 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:17:18] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:18:32,444 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:18:32,610 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-10 00:18:32,610 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-10 00:18:32,629 - werkzeug - INFO -  * Restarting with stat
+2025-11-10 00:18:34,173 - __main__ - INFO - Database initialized successfully
+2025-11-10 00:18:34,222 - werkzeug - WARNING -  * Debugger is active!
+2025-11-10 00:18:34,272 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-10 00:18:35,219 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:18:35] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:18:35,427 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:18:35] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:15,888 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:15] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:15,930 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:15] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:16,644 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:16] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:16,683 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:16] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:16,929 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:16] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:16,975 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:16] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:17,088 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:17,127 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:17,225 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:17,266 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:17,363 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:17,413 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:19:17,444 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "GET /home HTTP/1.1" 200 -
+2025-11-10 00:19:17,489 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 00:19:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-10 00:20:44,411 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-10 00:20:44,595 - werkzeug - INFO -  * Restarting with stat

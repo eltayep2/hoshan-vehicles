@@ -465,7 +465,7 @@
           <li><a class="dropdown-item" href="#" id="uploadHOAction">� Upload Handover</a></li>
           <li><a class="dropdown-item" href="#" id="uploadIDAction">🪪 Upload Driver ID</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" id="returnVerificationAction">🔙 Return Back for Verification</a></li>
+          <li><a class="dropdown-item" href="#" id="returnVerificationAction">🔙 Go for Verification or Return Back</a></li>
         </ul>
       </div>
 
@@ -654,12 +654,12 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-warning text-dark">
-          <h6 class="modal-title">🔙 Return Back for Verification</h6>
+          <h6 class="modal-title">🔙 Go for Verification or Return Back</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="alert alert-warning alert-sm">
-            <small>Return vehicle back for verification and upload return document.</small>
+            <small>Send vehicle for verification or return it back with document.</small>
           </div>
           
           <!-- Vehicle Information -->
@@ -805,6 +805,27 @@
         el.style.color = '#95a5a6'; // Gray for other
       }
     });
+
+    // Return Back for Verification Action
+    const returnVerificationBtn = document.getElementById('returnVerificationAction');
+    if (returnVerificationBtn) {
+      returnVerificationBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+        if (selected.length === 0) {
+          alert('⚠️ Please select a vehicle first');
+          return;
+        }
+        if (selected.length > 1) {
+          alert('⚠️ Please select only ONE vehicle for this action');
+          return;
+        }
+        
+        // Redirect to return verification page
+        const vehicleId = selected[0].value;
+        window.location.href = '/return_verification/' + vehicleId;
+      });
+    }
   });
   
   // select all
@@ -980,42 +1001,6 @@
     window.location.href = '/transfer_user/' + selected[0].value;
   });
 
-  // Return Back for Verification Action
-  document.getElementById('returnVerificationAction').addEventListener('click', function(e) {
-    e.preventDefault();
-    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
-    if (selected.length === 0) {
-      alert('⚠️ Please select a vehicle first');
-      return;
-    }
-    if (selected.length > 1) {
-      alert('⚠️ Please select only ONE vehicle for this action');
-      return;
-    }
-    
-    // Get vehicle data from the selected row
-    const vehicleId = selected[0].value;
-    const row = selected[0].closest('tr');
-    const cells = row.querySelectorAll('td');
-    
-    // Fill vehicle information (adjust indices based on your table structure)
-    document.getElementById('rvVehicleId').value = vehicleId;
-    document.getElementById('rvPlateNumber').textContent = cells[1].textContent.trim();
-    document.getElementById('rvVehicleType').textContent = cells[2].textContent.trim();
-    document.getElementById('rvModel').textContent = cells[3].textContent.trim();
-    document.getElementById('rvYear').textContent = cells[4].textContent.trim();
-    document.getElementById('rvColor').textContent = cells[5].textContent.trim();
-    document.getElementById('rvEmpName').textContent = cells[6].textContent.trim();
-    document.getElementById('rvEmpNo').textContent = cells[7].textContent.trim();
-    document.getElementById('rvIqamaNo').textContent = cells[8].textContent.trim();
-    document.getElementById('rvStatus').textContent = cells[11].textContent.trim();
-    document.getElementById('rvRegion').textContent = '{{ region }}';
-    
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('returnVerificationModal'));
-    modal.show();
-  });
-
   // Submit Return Verification
   function submitReturnVerification() {
     const form = document.getElementById('returnVerificationForm');
@@ -1035,7 +1020,7 @@
     .then(data => {
       if (data.success) {
         alert('✅ ' + data.message);
-        bootstrap.Modal.getInstance(document.getElementById('returnVerificationModal')).hide();
+        closeReturnVerificationModal();
         location.reload();
       } else {
         alert('⚠️ ' + data.message);
@@ -1046,6 +1031,51 @@
       alert('⚠️ An error occurred while submitting');
     });
   }
+
+  // Close Return Verification Modal
+  function closeReturnVerificationModal() {
+    const modalElement = document.getElementById('returnVerificationModal');
+    const backdrop = document.getElementById('rvModalBackdrop');
+    
+    if (modalElement) {
+      modalElement.classList.remove('show');
+      modalElement.style.display = 'none';
+      modalElement.setAttribute('aria-hidden', 'true');
+      modalElement.removeAttribute('aria-modal');
+      modalElement.removeAttribute('role');
+    }
+    
+    if (backdrop) {
+      backdrop.remove();
+    }
+    
+    document.body.classList.remove('modal-open');
+  }
+
+  // Add close button handlers for modal
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('returnVerificationModal');
+    if (modal) {
+      // Close on backdrop click
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeReturnVerificationModal();
+        }
+      });
+      
+      // Close on X button
+      const closeBtn = modal.querySelector('.btn-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeReturnVerificationModal);
+      }
+      
+      // Close on Cancel button
+      const cancelBtn = modal.querySelector('[data-bs-dismiss="modal"]');
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', closeReturnVerificationModal);
+      }
+    }
+  });
 
   // Update selected count when checkboxes change
   document.querySelectorAll('.vehicle-checkbox').forEach(cb => {

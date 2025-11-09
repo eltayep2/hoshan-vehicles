@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Return for Verification</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .card-header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border-radius: 15px 15px 0 0 !important;
+      padding: 20px;
+    }
+    .btn-custom {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+    }
+    .btn-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .info-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="mb-0">🔙 Go for Verification or Return Back</h4>
+        <small>Send vehicle for verification or return it back with document</small>
+      </div>
+      <div class="card-body">
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Vehicle Information -->
+        <div class="info-card">
+          <h5 class="mb-3">🚗 Vehicle Information</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-2"><span class="info-label">Plate Number:</span> {{ vehicle[1] }}</p>
+              <p class="mb-2"><span class="info-label">Vehicle Type:</span> {{ vehicle[2] }}</p>
+              <p class="mb-2"><span class="info-label">Model:</span> {{ vehicle[3] }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2"><span class="info-label">Year:</span> {{ vehicle[4] }}</p>
+              <p class="mb-2"><span class="info-label">Color:</span> {{ vehicle[5] }}</p>
+              <p class="mb-2"><span class="info-label">Status:</span> {{ vehicle[11] }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current User Information -->
+        <div class="info-card">
+          <h5 class="mb-3">👤 Current User Information</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-2"><span class="info-label">Employee Name:</span> {{ vehicle[6] }}</p>
+              <p class="mb-2"><span class="info-label">Employee Number:</span> {{ vehicle[7] }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2"><span class="info-label">Iqama Number:</span> {{ vehicle[8] }}</p>
+              <p class="mb-2"><span class="info-label">Region:</span> {{ region }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Form -->
+        <form method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label"><strong>📄 Upload Return Document (استلام):</strong></label>
+            <input type="file" class="form-control" name="return_document" accept=".pdf,.jpg,.jpeg,.png" required>
+            <small class="text-muted">Accepted formats: PDF, JPG, PNG</small>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label"><strong>Notes (Optional):</strong></label>
+            <textarea class="form-control" name="notes" rows="3" placeholder="Enter any additional notes..."></textarea>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="/home" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-custom">Submit Return</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
