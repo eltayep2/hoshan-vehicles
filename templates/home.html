@@ -28,25 +28,335 @@
       align-items:center; margin:20px 0; box-shadow:0 2px 6px rgba(0,0,0,0.1);
     }
     .stat-card {
-      background:#fff; border-radius:10px; text-align:center;
-      padding:10px; border:1px solid #eee; color:#b8860b;
-      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px 10px;
+      border: 2px solid rgba(255, 204, 51, 0.3);
+      color: #b8860b;
+      box-shadow: 0 4px 15px rgba(255, 204, 51, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 204, 51, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+    .stat-card:hover::before {
+      left: 100%;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 204, 51, 0.4);
+      border-color: #ffcc33;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .stat-card div {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .stat-card h5 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+      color: #b8860b;
+      position: relative;
+      z-index: 1;
     }
     .btn-gold { background:#ffcc33; color:#fff; border:none; }
     .btn-gold:hover { background:#e6b800; }
     .btn-sm-custom { padding:3px 6px; font-size:12px; margin:1px; }
-    .table { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
-    .table thead { background:#ffcc33; color:#fff; }
+    .btn-text-only { 
+      background:none; 
+      border:none; 
+      color:#b8860b; 
+      padding:5px 10px; 
+      font-weight:500; 
+      cursor:pointer;
+      transition: color 0.2s;
+    }
+    .btn-text-only:hover { 
+      color:#ffcc33; 
+      text-decoration: underline;
+    }
+    .btn-text-only:disabled {
+      color:#999;
+      cursor: not-allowed;
+    }
+    .table { 
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 2px solid #b8860b;
+    }
+    .table thead { 
+      background: linear-gradient(135deg, rgba(255, 204, 51, 0.9) 0%, rgba(230, 184, 0, 0.9) 100%);
+      backdrop-filter: blur(15px);
+      color: #fff;
+      position: relative;
+    }
+    .table thead::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #b8860b, transparent);
+      opacity: 0.8;
+    }
+    .table thead th {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      padding: 15px 10px;
+      border: none;
+      position: relative;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .table tbody tr {
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .table tbody tr:hover {
+      background: rgba(255, 204, 51, 0.1);
+      box-shadow: 0 2px 10px rgba(255, 204, 51, 0.2);
+    }
+    .table tbody td {
+      padding: 12px 10px;
+      border-color: #b8860b;
+      vertical-align: middle;
+    }
+    
+    /* Table Responsive Container */
+    .table-responsive {
+      border: 3px solid #b8860b;
+      border-radius: 15px;
+      padding: 0;
+      box-shadow: 0 4px 20px rgba(184, 134, 11, 0.2);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+    }
+    
+    /* Header Badge Style */
+    .header-badge {
+      display: inline-block;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1.5px solid #b8860b;
+      color: #b8860b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 11px;
+      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .header-badge::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+    .header-badge:hover::before {
+      left: 100%;
+    }
+    .header-badge:hover {
+      background: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
     footer { text-align:center; color:#999; margin-top:30px; font-size:13px; }
+    
+    /* Status Text Colors */
+    .status-text {
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Project Text Colors */
+    .project-text {
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.3px;
+    }
+    
+    /* Region Text Colors */
+    .region-text {
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* English statuses */
+    .status-active {
+      color: #28a745 !important;
+    }
+    .status-inactive {
+      color: #dc3545 !important;
+    }
+    .status-maintenance, .status-under-maintenance {
+      color: #dc3545 !important;
+    }
+    .status-rented {
+      color: #ffc107 !important;
+    }
+    .status-modified {
+      color: #17a2b8 !important;
+    }
+    .status-vacation, .status-on-vacation {
+      color: #ffc107 !important;
+    }
+    
+    /* Arabic statuses */
+    .status-نشط {
+      color: #28a745 !important;
+    }
+    .status-احتياطي-\(-بحاجة-الي-صيانة-\), 
+    .status-احتياطي-\(بحاجة-الي-صيانة\) {
+      color: #dc3545 !important;
+    }
+    .status-مركونة-\(-الموظف-في-اجازة-\),
+    .status-مركونة-\(الموظف-في-اجازة\) {
+      color: #ffc107 !important;
+    }
+    .status-تم-نقلها-لمشروع-اخر {
+      color: #17a2b8 !important;
+    }
+    
+    /* Custom Delete Confirmation Modal */
+    .delete-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .delete-modal {
+      background: white;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease;
+    }
+    @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .delete-modal-header {
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: white;
+      padding: 12px 15px;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .delete-modal-body {
+      padding: 15px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .delete-modal-footer {
+      display: flex;
+      gap: 8px;
+      padding: 0 15px 15px 15px;
+      justify-content: flex-end;
+    }
+    .delete-modal-btn {
+      padding: 6px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .delete-modal-btn-confirm {
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: white;
+    }
+    .delete-modal-btn-confirm:hover {
+      background: linear-gradient(135deg, #daa520 0%, #b8860b 100%);
+      transform: translateY(-1px);
+    }
+    .delete-modal-btn-cancel {
+      background: white;
+      color: #666;
+      border: 1px solid #ddd;
+    }
+    .delete-modal-btn-cancel:hover {
+      background: #f5f5f5;
+      border-color: #b8860b;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Custom Delete Confirmation Modal -->
+  <div class="delete-modal-overlay" id="deleteModalOverlay">
+    <div class="delete-modal">
+      <div class="delete-modal-header">
+        <span>⚠️</span>
+        <span>Delete Confirmation</span>
+      </div>
+      <div class="delete-modal-body" id="deleteModalMessage">
+        Delete <strong id="deleteCount">0</strong> vehicle(s)?<br>
+        <small style="color: #666;">All data will be removed. You can undo immediately.</small>
+      </div>
+      <div class="delete-modal-footer">
+        <button class="delete-modal-btn delete-modal-btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+        <button class="delete-modal-btn delete-modal-btn-confirm" onclick="confirmDeleteAction()">Delete</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <img src="{{ url_for('static', filename='hoshan_logo.png') }}" alt="Hoshan Logo">
     <hr style="width:80%; margin:5px auto; border-color:#ffcc33;">
-    <a href="/home" class="{% if region == 'ALL' %}active{% endif %}">All</a>
+    <a href="/region/ALL" class="{% if region == 'ALL' %}active{% endif %}">All</a>
     <a href="/region/Najran" class="{% if region == 'Najran' %}active{% endif %}">Najran</a>
     <a href="/region/Jeddah" class="{% if region == 'Jeddah' %}active{% endif %}">Jeddah</a>
     <a href="/region/Asser" class="{% if region == 'Asser' %}active{% endif %}">Asser</a>
@@ -79,24 +389,43 @@
       <div class="col-6 col-md-2"><div class="stat-card"><div>Modified</div><h5>{{ modified }}</h5></div></div>
     </div>
 
-    <!-- Import / Export + Maintenance + Transfer -->
-    <div class="d-flex align-items-center flex-wrap mb-3" style="gap:10px;">
-      <form method="POST" action="/import_excel" enctype="multipart/form-data" class="d-flex align-items-center" style="gap:5px;">
-        <input type="hidden" name="region_name" value="{{ region }}">
-        {% if session['region'] == 'ALL' %}
-          <input type="file" name="excel_file" accept=".xlsx" required style="display:none;" id="excelInput">
-          <button type="button" class="btn btn-outline-warning btn-sm" onclick="document.getElementById('excelInput').click()">📥 Import</button>
-          <button type="submit" class="btn btn-gold btn-sm">Upload</button>
-        {% else %}
-          <button type="button" class="btn btn-secondary btn-sm" disabled title="Admins only">📥 Import (Admins only)</button>
-        {% endif %}
-      </form>
+    <!-- Manage Data + Transfer + Maintenance + Actions -->
+    <div class="d-flex align-items-center flex-wrap mb-3" style="gap:15px;">
+      
+      <!-- Manage Data Dropdown -->
+      <div class="dropdown">
+        <button class="btn-text-only dropdown-toggle" type="button" id="manageDataButton" data-bs-toggle="dropdown" aria-expanded="false">
+          📊 Manage Data
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="manageDataButton">
+          <li><a class="dropdown-item" href="{{ url_for('add_vehicle_page') }}">➕ Add New Vehicle</a></li>
+          <li><hr class="dropdown-divider"></li>
+          {% if session['region'] == 'ALL' %}
+            <li>
+              <a class="dropdown-item" href="#" onclick="document.getElementById('excelInput').click(); return false;">
+                📥 Import Vehicles
+              </a>
+            </li>
+          {% else %}
+            <li><a class="dropdown-item disabled" href="#">📥 Import Vehicles (Admins only)</a></li>
+          {% endif %}
+          <li><a class="dropdown-item" href="/export_excel?region={{ region }}">📤 Export Vehicles</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="transferUserLink">🔄 Transfer to Another User</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" onclick="alert('Report feature coming soon!'); return false;">📄 Generate Report</a></li>
+        </ul>
+      </div>
 
-      <a href="/export_excel?region={{ region }}" class="btn btn-outline-warning btn-sm">📤 Export</a>
+      <!-- Hidden Import Form -->
+      <form method="POST" action="/import_excel" enctype="multipart/form-data" id="importForm" style="display:none;">
+        <input type="hidden" name="region_name" value="{{ region }}">
+        <input type="file" name="excel_file" accept=".xlsx" required id="excelInput" onchange="this.form.submit();">
+      </form>
 
       <!-- Transfer Button Dropdown -->
       <div class="dropdown">
-        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="transferMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn-text-only dropdown-toggle" type="button" id="transferMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
           🚚 Transfer Selected
         </button>
         <ul class="dropdown-menu" aria-labelledby="transferMenuButton">
@@ -112,44 +441,99 @@
         </ul>
       </div>
 
-      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#maintenanceModal">🧰 New Maintenance Request</button>
+      <!-- Actions Dropdown -->
+      <div class="dropdown">
+        <button class="btn-text-only dropdown-toggle" type="button" id="actionsMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          ⚙️ Actions
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="actionsMenuButton">
+          <li><a class="dropdown-item" href="#" id="viewAction">👁 View Vehicle</a></li>
+          <li><a class="dropdown-item" href="#" id="editAction">✏️ Edit Vehicle</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="uploadHOAction">� Upload Handover</a></li>
+          <li><a class="dropdown-item" href="#" id="uploadIDAction">🪪 Upload Driver ID</a></li>
+        </ul>
+      </div>
+
+      <!-- Delete Button (appears when vehicles selected) -->
+      <button class="btn btn-danger btn-sm" id="deleteButton" style="display:none;" onclick="confirmDelete()">
+        🗑️ Delete Selected
+      </button>
+
+      <!-- Undo Delete Button (controlled by server) -->
+      {% if show_undo %}
+      <form method="POST" action="/undo_delete_vehicles" style="display:inline;">
+        <button class="btn btn-warning btn-sm" type="submit">
+          ↩️ Undo Delete
+        </button>
+      </form>
+      {% endif %}
+
+      <!-- Maintenance Request Dropdown -->
+      <div class="dropdown">
+        <button class="btn-text-only dropdown-toggle" type="button" id="maintenanceMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          🧰 Maintenance Request
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="maintenanceMenuButton">
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#maintenanceModal">📝 Single Request</a></li>
+          <li><a class="dropdown-item" href="#" id="multiMaintenanceAction">📋 Multiple Request</a></li>
+        </ul>
+      </div>
     </div>
+
+    <!-- Hidden Forms for File Uploads -->
+    <form id="uploadHOForm" method="post" enctype="multipart/form-data" style="display:none;">
+      <input type="file" id="hoFileInput" name="handover_pdf" accept=".pdf" required>
+    </form>
+    <form id="uploadIDForm" method="post" enctype="multipart/form-data" style="display:none;">
+      <input type="file" id="idFileInput" name="driver_id_pdf" accept=".pdf" required>
+    </form>
 
     <!-- Table -->
     <div class="table-responsive">
       <table class="table table-bordered align-middle text-center">
         <thead>
-          <tr><th><input type="checkbox" id="select-all"></th><th>ID</th><th>Plate</th><th>Driver</th><th>Status</th><th>Project</th><th>Actions</th></tr>
+          <tr>
+            <th><input type="checkbox" id="select-all"></th>
+            <th><span class="header-badge">ID</span></th>
+            <th><span class="header-badge">Plate</span></th>
+            <th><span class="header-badge">Driver</span></th>
+            <th><span class="header-badge">Status</span></th>
+            <th><span class="header-badge">Project</span></th>
+            <th><span class="header-badge">Region</span></th>
+          </tr>
         </thead>
         <tbody>
           {% for v in vehicles %}
-          <tr>
+          <tr class="vehicle-row" data-vehicle-id="{{ v[0] }}">
             <td><input type="checkbox" class="vehicle-checkbox" value="{{ v[0] }}"></td>
             <td>{{ v[0] }}</td>
             <td>{{ v[1] }}</td>
             <td>{{ v[11] }}</td>
-            <td>{{ v[7] }}</td>
-            <td>{{ v[12] }}</td>
             <td>
-              <a href="/vehicle/{{ v[0] }}" class="btn btn-outline-primary btn-sm-custom" title="View">👁</a>
-              <a href="/edit_vehicle/{{ v[0] }}" class="btn btn-outline-success btn-sm-custom" title="Edit">✏️</a>
-              <a href="/delete_vehicle/{{ v[0] }}" class="btn btn-outline-danger btn-sm-custom" onclick="return confirm('Delete this vehicle?')" title="Delete">🗑️</a>
-              <div class="d-inline">
-                {% if v[16] %}<a href="/uploads/{{ v[16] }}" target="_blank" class="btn btn-outline-warning btn-sm-custom">📄 HO</a>{% endif %}
-                <form action="/upload_handover/{{ v[0] }}" method="post" enctype="multipart/form-data" class="d-inline">
-                  <input type="file" name="handover_pdf" accept=".pdf" required style="display:none;" onchange="this.form.submit()">
-                  <button type="button" class="btn btn-outline-secondary btn-sm-custom" onclick="this.previousElementSibling.click()">+HO</button>
-                  <a href="/old_files/{{ v[0] }}/HO" class="btn btn-outline-dark btn-sm-custom" title="Old HO Files">📚</a>
-                </form>
-              </div>
-              <div class="d-inline">
-                {% if v[17] %}<a href="/uploads/{{ v[17] }}" target="_blank" class="btn btn-outline-info btn-sm-custom">🪪 ID</a>{% endif %}
-                <form action="/upload_driver_id/{{ v[0] }}" method="post" enctype="multipart/form-data" class="d-inline">
-                  <input type="file" name="driver_id_pdf" accept=".pdf" required style="display:none;" onchange="this.form.submit()">
-                  <button type="button" class="btn btn-outline-secondary btn-sm-custom" onclick="this.previousElementSibling.click()">+ID</button>
-                  <a href="/old_files/{{ v[0] }}/ID" class="btn btn-outline-dark btn-sm-custom" title="Old ID Files">📚</a>
-                </form>
-              </div>
+              {% if v[7] %}
+                <span class="status-text status-{{ v[7]|lower|replace(' ', '-') }}">
+                  {{ v[7] }}
+                </span>
+              {% else %}
+                <span class="status-text">N/A</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if v[12] %}
+                <span class="project-text">{{ v[12] }}</span>
+              {% else %}
+                <span class="project-text">N/A</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if v[19] %}
+                <span class="region-text">
+                  {{ v[19] }}
+                </span>
+              {% else %}
+                <span class="region-text">N/A</span>
+              {% endif %}
             </td>
           </tr>
           {% else %}
@@ -157,38 +541,30 @@
           {% endfor %}
         </tbody>
       </table>
-
-      <!-- Maintenance multi -->
-      <div class="mt-3">
-        <textarea id="multiDesc" class="form-control form-control-sm mb-2" rows="2" placeholder="Enter maintenance details for selected vehicles..."></textarea>
-        <button id="multiMaintenanceBtn" class="btn btn-gold w-100 btn-sm">🛠 Create Maintenance Request for Selected</button>
-      </div>
     </div>
 
     <footer>Hoshan Group © 2025</footer>
   </div>
 
-  <!-- Modal -->
+  <!-- Single Maintenance Modal -->
   <div class="modal fade" id="maintenanceModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-warning text-white">
-          <h6 class="modal-title">New Maintenance Request</h6>
+          <h6 class="modal-title">Single Maintenance Request</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
+          <div class="alert alert-info alert-sm">
+            <small>Please select vehicles from the table below, then enter maintenance details.</small>
+          </div>
           <form id="maintenanceForm">
             <div class="mb-2">
-              <label class="form-label">Select Vehicle:</label>
-              <select class="form-select form-select-sm" id="vehicleSelect" required>
-                {% for v in vehicles %}
-                  <option value="{{ v[0] }}">{{ v[1] }} - {{ v[11] }}</option>
-                {% endfor %}
-              </select>
+              <label class="form-label">Selected Vehicles: <span id="singleSelectedCount">0</span></label>
             </div>
             <div class="mb-2">
               <label class="form-label">Maintenance Description:</label>
-              <textarea id="maintenanceDesc" class="form-control form-control-sm" rows="3" placeholder="e.g., Oil change, AC repair..." required></textarea>
+              <textarea id="maintenanceDesc" class="form-control form-control-sm" rows="3" placeholder="Maintenance Description:" required></textarea>
             </div>
           </form>
         </div>
@@ -200,10 +576,341 @@
     </div>
   </div>
 
+  <!-- Multiple Maintenance Modal -->
+  <div class="modal fade" id="multiMaintenanceModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h6 class="modal-title">Multiple Maintenance Request</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-info alert-sm">
+            <small>Please select vehicles from the table below, then enter maintenance details.</small>
+          </div>
+          <form id="multiMaintenanceForm">
+            <div class="mb-2">
+              <label class="form-label">Selected Vehicles: <span id="selectedCount">0</span></label>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Maintenance Description:</label>
+              <textarea id="multiMaintenanceDesc" class="form-control form-control-sm" rows="3" placeholder="Maintenance Description:" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-gold btn-sm" type="button" onclick="generateMultiMaintenance()">Create Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transfer to Another User Modal -->
+  <div class="modal fade" id="transferUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h6 class="modal-title">🔄 Transfer Vehicle to Another User</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-info alert-sm">
+            <small>Select a vehicle from the table and enter new user details.</small>
+          </div>
+          <form id="transferUserForm">
+            <div class="mb-2">
+              <label class="form-label">Selected Vehicle: <span id="transferVehicleCount">0</span></label>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">New Employee Number:</label>
+              <input type="text" id="newEmpNo" class="form-control form-control-sm" placeholder="Enter employee number" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">New Employee Name:</label>
+              <input type="text" id="newEmpName" class="form-control form-control-sm" placeholder="Enter employee name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">New Iqama Number (Optional):</label>
+              <input type="text" id="newIqamaNo" class="form-control form-control-sm" placeholder="Enter iqama number">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary btn-sm" type="button" onclick="transferToUser()">Transfer Vehicle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+  // Apply status colors dynamically
+  document.addEventListener('DOMContentLoaded', function() {
+    // Status colors
+    document.querySelectorAll('.status-text').forEach(function(el) {
+      const text = el.textContent.trim().toLowerCase();
+      
+      // Green for active statuses
+      if (text.includes('نشط') || text.includes('active')) {
+        el.style.color = '#28a745';
+      }
+      // Red for maintenance/inactive
+      else if (text.includes('صيانة') || text.includes('احتياطي') || 
+               text.includes('maintenance') || text.includes('inactive')) {
+        el.style.color = '#dc3545';
+      }
+      // Yellow for vacation/parked
+      else if (text.includes('اجازة') || text.includes('مركونة') || 
+               text.includes('vacation') || text.includes('parked') || 
+               text.includes('rented')) {
+        el.style.color = '#ffc107';
+      }
+      // Blue for transferred/modified
+      else if (text.includes('نقل') || text.includes('مشروع') || 
+               text.includes('transfer') || text.includes('modified')) {
+        el.style.color = '#17a2b8';
+      }
+    });
+    
+    // Project colors
+    document.querySelectorAll('.project-text').forEach(function(el) {
+      const text = el.textContent.trim().toLowerCase();
+      
+      // Different colors for different projects
+      if (text.includes('zte')) {
+        el.style.color = '#e74c3c'; // Red
+      }
+      else if (text.includes('huawei')) {
+        el.style.color = '#e67e22'; // Orange
+      }
+      else if (text.includes('mobily')) {
+        el.style.color = '#9b59b6'; // Purple
+      }
+      else if (text.includes('60') || /^\d+$/.test(text)) {
+        el.style.color = '#3498db'; // Blue
+      }
+      else if (text !== 'n/a') {
+        el.style.color = '#16a085'; // Teal for any other project
+      }
+    });
+    
+    // Region colors
+    document.querySelectorAll('.region-text').forEach(function(el) {
+      const text = el.textContent.trim().toLowerCase();
+      
+      // Different colors for different regions
+      if (text.includes('najran')) {
+        el.style.color = '#e74c3c'; // Red
+      }
+      else if (text.includes('jeddah')) {
+        el.style.color = '#3498db'; // Blue
+      }
+      else if (text.includes('asser')) {
+        el.style.color = '#27ae60'; // Green
+      }
+      else if (text.includes('jazan')) {
+        el.style.color = '#e67e22'; // Orange
+      }
+      else if (text.includes('baha')) {
+        el.style.color = '#9b59b6'; // Purple
+      }
+      else if (text.includes('riyadh')) {
+        el.style.color = '#f39c12'; // Gold
+      }
+      else if (text.includes('dammam')) {
+        el.style.color = '#16a085'; // Teal
+      }
+      else if (text !== 'n/a') {
+        el.style.color = '#95a5a6'; // Gray for other
+      }
+    });
+  });
+  
   // select all
   document.getElementById("select-all").addEventListener("change", function () {
     document.querySelectorAll(".vehicle-checkbox").forEach(cb => cb.checked = this.checked);
+    updateDeleteButton();
+  });
+
+  // Update delete button visibility
+  function updateDeleteButton() {
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    const deleteBtn = document.getElementById('deleteButton');
+    const deleteCount = document.getElementById('deleteCount');
+    
+    if (selected.length > 0) {
+      deleteBtn.style.display = 'inline-block';
+      deleteCount.textContent = selected.length;
+    } else {
+      deleteBtn.style.display = 'none';
+    }
+  }
+
+  // Add event listener to all checkboxes
+  document.querySelectorAll('.vehicle-checkbox').forEach(function(checkbox) {
+    checkbox.addEventListener('change', updateDeleteButton);
+  });
+
+  // Get selected vehicle
+  function getSelectedVehicle() {
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    if (selected.length === 0) {
+      alert('⚠️ Please select a vehicle first');
+      return null;
+    }
+    if (selected.length > 1) {
+      alert('⚠️ Please select only ONE vehicle for this action');
+      return null;
+    }
+    return selected[0].value;
+  }
+
+  // Actions handlers
+  document.getElementById('viewAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const vehicleId = getSelectedVehicle();
+    if (vehicleId) window.location.href = '/vehicle/' + vehicleId;
+  });
+
+  document.getElementById('editAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const vehicleId = getSelectedVehicle();
+    if (vehicleId) window.location.href = '/edit_vehicle/' + vehicleId;
+  });
+
+  // Store deleted vehicles for undo
+  let pendingDeleteVehicles = [];
+
+  // Ensure modal is closed on page load
+  window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('deleteModalOverlay').style.display = 'none';
+  });
+
+  // Delete confirmation function
+  function confirmDelete() {
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    const vehicleIds = Array.from(selected).map(cb => cb.value);
+    
+    if (vehicleIds.length === 0) {
+      alert('⚠️ Please select vehicles to delete');
+      return;
+    }
+    
+    // Store pending delete
+    pendingDeleteVehicles = vehicleIds;
+    
+    // Show custom modal
+    const count = vehicleIds.length;
+    document.getElementById('deleteCount').textContent = count;
+    document.getElementById('deleteModalOverlay').style.display = 'flex';
+  }
+
+  // Close delete modal
+  function closeDeleteModal() {
+    document.getElementById('deleteModalOverlay').style.display = 'none';
+    pendingDeleteVehicles = [];
+  }
+
+  // Confirm delete action
+  function confirmDeleteAction() {
+    if (pendingDeleteVehicles.length === 0) {
+      closeDeleteModal();
+      return;
+    }
+    
+    // Create form and submit
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/delete_vehicles';
+    
+    pendingDeleteVehicles.forEach(id => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'vehicle_ids';
+      input.value = id;
+      form.appendChild(input);
+    });
+    
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+  // File upload handlers
+  document.getElementById('uploadHOAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const vehicleId = getSelectedVehicle();
+    if (vehicleId) {
+      const form = document.getElementById('uploadHOForm');
+      form.action = '/upload_handover/' + vehicleId;
+      document.getElementById('hoFileInput').click();
+    }
+  });
+
+  document.getElementById('uploadIDAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const vehicleId = getSelectedVehicle();
+    if (vehicleId) {
+      const form = document.getElementById('uploadIDForm');
+      form.action = '/upload_driver_id/' + vehicleId;
+      document.getElementById('idFileInput').click();
+    }
+  });
+
+  // Auto-submit file forms
+  document.getElementById('hoFileInput').addEventListener('change', function() {
+    if (this.files.length > 0) {
+      document.getElementById('uploadHOForm').submit();
+    }
+  });
+
+  document.getElementById('idFileInput').addEventListener('change', function() {
+    if (this.files.length > 0) {
+      document.getElementById('uploadIDForm').submit();
+    }
+  });
+
+  // Multiple Maintenance Action
+  document.getElementById('multiMaintenanceAction').addEventListener('click', function(e) {
+    e.preventDefault();
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    if (selected.length === 0) {
+      alert('⚠️ Please select at least one vehicle first');
+      return;
+    }
+    // Update count
+    document.getElementById('selectedCount').textContent = selected.length;
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('multiMaintenanceModal'));
+    modal.show();
+  });
+
+  // Transfer User Link
+  document.getElementById('transferUserLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    const selected = document.querySelectorAll('.vehicle-checkbox:checked');
+    if (selected.length === 0) {
+      alert('⚠️ Please select a vehicle first');
+      return;
+    }
+    if (selected.length > 1) {
+      alert('⚠️ Please select only ONE vehicle for transfer');
+      return;
+    }
+    window.location.href = '/transfer_user/' + selected[0].value;
+  });
+
+  // Update selected count when checkboxes change
+  document.querySelectorAll('.vehicle-checkbox').forEach(cb => {
+    cb.addEventListener('change', function() {
+      const count = document.querySelectorAll('.vehicle-checkbox:checked').length;
+      const countElem = document.getElementById('selectedCount');
+      const singleCountElem = document.getElementById('singleSelectedCount');
+      const transferCountElem = document.getElementById('transferVehicleCount');
+      if (countElem) countElem.textContent = count;
+      if (singleCountElem) singleCountElem.textContent = count;
+      if (transferCountElem) transferCountElem.textContent = count;
+    });
   });
 
   // handle Transfer selected
@@ -221,12 +928,13 @@
 
   // maintenance single
   function generateMaintenance() {
-    const select = document.getElementById('vehicleSelect');
+    const selected = Array.from(document.querySelectorAll('.vehicle-checkbox:checked')).map(cb => cb.value);
     const desc = document.getElementById('maintenanceDesc').value.trim();
-    if (!select || !select.value) return alert('Please select a vehicle.');
+    if (selected.length === 0) return alert('Please select at least one vehicle from the table.');
+    if (selected.length > 1) return alert('Please select only ONE vehicle for single request.');
     if (!desc) return alert('Please enter maintenance details.');
     const formData = new FormData();
-    formData.append('vehicle_id', select.value);
+    formData.append('vehicle_id', selected[0]);
     formData.append('desc', desc);
     fetch('/maintenance_request', { method: 'POST', body: formData })
       .then(res => res.text()).then(html => {
@@ -236,21 +944,68 @@
       .catch(err => { alert('Error while creating maintenance request.'); console.error(err); });
   }
 
-  // maintenance multi
-  document.getElementById("multiMaintenanceBtn").addEventListener("click", function () {
-    const selected = Array.from(document.querySelectorAll(".vehicle-checkbox:checked")).map(cb => cb.value);
-    const desc = document.getElementById("multiDesc").value.trim();
-    if (selected.length === 0) return alert("Please select at least one vehicle.");
-    if (!desc) return alert("Please enter maintenance details.");
+  // maintenance multiple
+  function generateMultiMaintenance() {
+    const selected = Array.from(document.querySelectorAll('.vehicle-checkbox:checked')).map(cb => cb.value);
+    const desc = document.getElementById('multiMaintenanceDesc').value.trim();
+    if (selected.length === 0) return alert('Please select at least one vehicle.');
+    if (!desc) return alert('Please enter maintenance details.');
     const formData = new FormData();
-    formData.append("vehicle_ids", JSON.stringify(selected));
-    formData.append("desc", desc);
-    fetch("/maintenance_request_multi", { method: "POST", body: formData })
+    formData.append('vehicle_ids', JSON.stringify(selected));
+    formData.append('desc', desc);
+    fetch('/maintenance_request_multi', { method: 'POST', body: formData })
       .then(res => res.text()).then(html => {
-        const newWin = window.open("", "_blank");
+        const newWin = window.open('', '_blank');
         newWin.document.write(html); newWin.document.close();
       })
-      .catch(err => { alert("Error while creating maintenance request."); console.error(err); });
+      .catch(err => { alert('Error while creating maintenance request.'); console.error(err); });
+  }
+
+  // Transfer to another user
+  function transferToUser() {
+    const selected = Array.from(document.querySelectorAll('.vehicle-checkbox:checked')).map(cb => cb.value);
+    const newEmpNo = document.getElementById('newEmpNo').value.trim();
+    const newEmpName = document.getElementById('newEmpName').value.trim();
+    const newIqamaNo = document.getElementById('newIqamaNo').value.trim();
+    
+    if (selected.length === 0) return alert('Please select a vehicle from the table.');
+    if (selected.length > 1) return alert('Please select only ONE vehicle for transfer.');
+    if (!newEmpNo || !newEmpName) return alert('Please enter employee number and name.');
+    
+    const formData = new FormData();
+    formData.append('vehicle_id', selected[0]);
+    formData.append('emp_no', newEmpNo);
+    formData.append('emp_name', newEmpName);
+    formData.append('iqama_no', newIqamaNo);
+    
+    fetch('/transfer_to_user', { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Vehicle transferred successfully!');
+          location.reload();
+        } else {
+          alert('⚠️ ' + (data.message || 'Error transferring vehicle'));
+        }
+      })
+      .catch(err => { 
+        alert('Error while transferring vehicle.'); 
+        console.error(err); 
+      });
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('deleteModalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeDeleteModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeDeleteModal();
+    }
   });
   </script>
 
