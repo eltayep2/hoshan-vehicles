@@ -854,15 +854,13 @@ def undo_delete_vehicles():
 # =========================
 
 # =========================
-# IMPORT EXCEL (ADMIN ONLY, PER REGION)
+# IMPORT EXCEL (ADMIN ONLY - AUTO DISTRIBUTE BY DISTRICT)
 # =========================
 @app.route("/import_excel", methods=["POST"])
 @admin_only
 def import_excel():
-    target_region = (request.form.get("region_name") or "").strip()
-    if not target_region or target_region == "ALL":
-        flash("⚠️ Please select a specific region before import.", "warning")
-        return redirect(url_for("home"))
+    # Admin can import from ALL view - will auto-distribute by district
+    current_region = session.get("region", "ALL")
 
     if "excel_file" not in request.files:
         flash("⚠️ No file selected", "warning")
@@ -888,6 +886,7 @@ def import_excel():
 
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         inserted = 0
+        region_counts = {}  # Track how many per region
 
         for _, row in df.iterrows():
             row_dict = dict(row)
@@ -898,13 +897,41 @@ def import_excel():
 
             insert_cols = []
             values = []
+            
+            # Get district from Excel column H to determine region
+            district = row_dict.get('district')
+            target_region = None
+            
+            # Map district to region (customize based on your districts)
+            if district and pd.notna(district):
+                district_str = str(district).strip().lower()
+                # Auto-detect region from district name
+                if any(d in district_str for d in ['riyadh', 'الرياض']):
+                    target_region = 'Riyadh'
+                elif any(d in district_str for d in ['dammam', 'الدمام', 'eastern', 'الشرقية']):
+                    target_region = 'Dammam'
+                elif any(d in district_str for d in ['jeddah', 'جدة', 'makkah', 'مكة']):
+                    target_region = 'Jeddah'
+                elif any(d in district_str for d in ['najran', 'نجران']):
+                    target_region = 'Najran'
+                elif any(d in district_str for d in ['jazan', 'جازان']):
+                    target_region = 'Jazan'
+                elif any(d in district_str for d in ['baha', 'الباحة']):
+                    target_region = 'Baha'
+                elif any(d in district_str for d in ['asser', 'عسير', 'asir']):
+                    target_region = 'Asser'
+            
+            # If no region detected, use district value directly or skip
+            if not target_region:
+                target_region = str(district).strip() if district and pd.notna(district) else 'Riyadh'
+            
             for col in table_cols:
                 val = row_dict.get(col)  # Direct column name match
 
                 if col == "last_modified":
                     val = None  # Set to None for new imports
                 elif col == "region":
-                    val = target_region
+                    val = target_region  # Set from district column
                 elif col in ["handover_pdf", "driver_id_pdf"]:
                     val = None
                     
@@ -919,27 +946,31 @@ def import_excel():
             cols_sql = ",".join(insert_cols)
             c.execute(f"INSERT INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
             inserted += 1
+            
+            # Track regions
+            if target_region not in region_counts:
+                region_counts[target_region] = 0
+            region_counts[target_region] += 1
 
         conn.commit()
-        logger.info(f"{inserted} records imported to {target_region} by {session.get('emp_no')}")
-        flash(f"✅ Excel imported successfully ({inserted} records) for {target_region}", "success")
+        
+        # Build summary message
+        summary = ", ".join([f"{region}: {count}" for region, count in sorted(region_counts.items())])
+        logger.info(f"{inserted} records imported and distributed by district. {summary} by {session.get('emp_no')}")
+        flash(f"✅ Excel imported successfully! {inserted} records distributed: {summary}", "success")
         
         # Clean up uploaded file
         os.remove(filepath)
         
     except Exception as e:
-        logger.error(f"Error importing Excel for {target_region}: {e}")
+        logger.error(f"Error importing Excel: {e}")
         flash(f"⚠️ Error importing Excel: {str(e)}", "danger")
-        if target_region == "ALL":
-            return redirect(url_for("home"))
-        else:
-            return redirect(url_for("view_region", region_name=target_region))
     finally:
         if 'conn' in locals():
             conn.close()
     
-    # Return to the region view after import
-    return redirect(url_for("view_region", region_name=target_region))
+    # Return to home (ALL view)
+    return redirect(url_for("home"))
 
 
 # =========================
