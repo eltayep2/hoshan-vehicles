@@ -927,8 +927,26 @@ def import_excel():
 
             placeholders = ",".join(["?"] * len(insert_cols))
             cols_sql = ",".join(insert_cols)
-            c.execute(f"INSERT OR IGNORE INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
-            inserted += 1
+            
+            # Check if plate_number exists
+            plate = row_dict.get('plate_number', '')
+            if plate:
+                c.execute("SELECT id FROM vehicles WHERE plate_number=?", (plate,))
+                existing = c.fetchone()
+                if existing:
+                    # Update existing record
+                    update_parts = [f"{col}=?" for col in insert_cols if col != 'plate_number']
+                    update_values = [v for col, v in zip(insert_cols, values) if col != 'plate_number']
+                    update_values.append(plate)  # for WHERE clause
+                    c.execute(f"UPDATE vehicles SET {','.join(update_parts)} WHERE plate_number=?", update_values)
+                else:
+                    # Insert new record
+                    c.execute(f"INSERT INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
+                inserted += 1
+            else:
+                # No plate number, insert anyway
+                c.execute(f"INSERT INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
+                inserted += 1
 
         conn.commit()
         logger.info(f"{inserted} records imported to {target_region} by {session.get('emp_no')}")
