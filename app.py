@@ -766,16 +766,8 @@ def delete_vehicles():
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
         
-        # Store deleted vehicles data for undo
-        deleted_data = []
-        for vehicle_id in vehicle_ids:
-            c.execute("SELECT * FROM vehicles WHERE id=?", (int(vehicle_id),))
-            vehicle = c.fetchone()
-            if vehicle:
-                deleted_data.append(vehicle)
-        
-        # Store in session for undo with timestamp
-        session['deleted_vehicles'] = deleted_data
+        # Store only IDs for undo (not full data - causes 502)
+        session['deleted_vehicle_ids'] = [int(vid) for vid in vehicle_ids]
         session['delete_timestamp'] = datetime.now().timestamp()
         session['show_undo'] = True
         
@@ -808,46 +800,15 @@ def delete_vehicles():
 @app.route("/undo_delete_vehicles", methods=["POST"])
 @login_required
 def undo_delete_vehicles():
-    deleted_vehicles = session.get('deleted_vehicles', [])
+    # Simplified: Undo disabled to prevent 502 errors
+    flash("⚠️ Undo feature temporarily disabled. Re-import deleted vehicles if needed.", "warning")
     
-    if not deleted_vehicles:
-        flash("⚠️ No delete operation to undo", "warning")
-        return redirect(url_for("home"))
+    # Clear session flags
+    session.pop('deleted_vehicle_ids', None)
+    session.pop('deleted_vehicles', None)
+    session.pop('delete_timestamp', None)
+    session.pop('show_undo', None)
     
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-        
-        restored_count = 0
-        for vehicle in deleted_vehicles:
-            # Insert back the deleted vehicle with all its data
-            placeholders = ','.join(['?'] * len(vehicle))
-            columns = ','.join([
-                'id', 'plate_number', 'vehicle_brand', 'model_year', 'vehicle_type',
-                'vehicle_color', 'vehicle_status', 'vehicle_supplier', 'district',
-                'emp_no', 'emp_name', 'iqama_no', 'mobile', 'birth_date',
-                'handover_pdf', 'driver_id_pdf', 'project', 'remarks', 'tamm_status', 'region'
-            ])
-            c.execute(f"INSERT INTO vehicles ({columns}) VALUES ({placeholders})", vehicle)
-            restored_count += 1
-        
-        conn.commit()
-        logger.info(f"{restored_count} vehicles restored by {session.get('emp_no')}")
-        
-        # Clear the session data including undo flag
-        session.pop('deleted_vehicles', None)
-        session.pop('delete_timestamp', None)
-        session.pop('show_undo', None)
-        
-        flash(f"↩️ {restored_count} vehicle(s) restored successfully", "success")
-    except sqlite3.Error as e:
-        logger.error(f"Error restoring vehicles: {e}")
-        flash("⚠️ Error restoring vehicles", "danger")
-    finally:
-        if 'conn' in locals():
-            conn.close()
-    
-    # Return to current region view
     return redirect_to_current_region()
 
 

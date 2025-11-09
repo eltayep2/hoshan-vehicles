@@ -1333,3 +1333,264 @@
 2025-11-09 18:39:33,487 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:39:33] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
 2025-11-09 18:39:33,496 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:39:33] "GET /home HTTP/1.1" 200 -
 2025-11-09 18:39:33,527 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:39:33] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:07:26,226 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:07:26,266 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:07:26,291 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:07:26,370 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:07:26,370 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:07:26,370 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:07:27,132 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:07:27,132 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:07:27,132 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:07:27,180 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:07:27,180 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:07:32,972 - __main__ - WARNING - Unauthorized access attempt to /home
+2025-11-09 22:07:32,978 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:32] "[32mGET /home HTTP/1.1[0m" 302 -
+2025-11-09 22:07:33,044 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:33] "GET /login HTTP/1.1" 200 -
+2025-11-09 22:07:33,240 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:33] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:07:33,240 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:33] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 22:07:46,889 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 22:07:46,889 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-09 22:07:46,995 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:46] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:07:47,040 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:47] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:07:59,728 - __main__ - INFO - 69 vehicles deleted by eltayep: IDs ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70']
+2025-11-09 22:07:59,739 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:59] "[32mPOST /delete_vehicles HTTP/1.1[0m" 302 -
+2025-11-09 22:07:59,749 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:59] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:07:59,776 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:07:59] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:08:03,232 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:03] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
+2025-11-09 22:08:03,240 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:03] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:08:03,263 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:03] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:08:08,740 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:08] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:08:08,749 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:08] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:08:08,768 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:08] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:08:13,315 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:13] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:08:13,335 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:08:13] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:09:23,082 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:09:23,082 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:09:23,082 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:09:23,151 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:09:23,151 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:09:23,151 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:09:23,998 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:09:24,004 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:09:24,004 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:09:24,042 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:09:24,046 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:10:21,014 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:10:21,014 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:10:21,014 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:10:21,063 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:10:21,063 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:10:21,063 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:10:21,710 - __main__ - INFO - Starting app in DEVELOPMENT mode
+2025-11-09 22:10:21,711 - __main__ - INFO - Database path: E:\hoshan_project\project-vehicles-management\database\vehicles.db
+2025-11-09 22:10:21,712 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:10:21,746 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:10:21,750 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:10:23,903 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:23] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-09 22:10:24,015 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:24] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:10:24,076 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:24] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:10:26,079 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:26] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
+2025-11-09 22:10:26,087 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:26] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:10:26,112 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:26] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:10:32,086 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:32] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:10:32,090 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:32] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:10:32,117 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:10:32] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:11:49,334 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:11:49,485 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:11:50,940 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:11:50,996 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:11:51,013 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:12:59,337 - __main__ - WARNING - Unauthorized access attempt to /home
+2025-11-09 22:12:59,339 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:12:59] "[32mGET /home HTTP/1.1[0m" 302 -
+2025-11-09 22:12:59,662 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:12:59] "GET /login HTTP/1.1" 200 -
+2025-11-09 22:12:59,737 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:12:59] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 22:12:59,739 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:12:59] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:13:11,882 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 22:13:11,882 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:11] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-09 22:13:12,064 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:12] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:13:12,095 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:12] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:13:18,579 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:18] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:13:18,593 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:18] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:13:18,620 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:13:18] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:14:03,436 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:14:03,615 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:14:05,066 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:14:05,129 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:14:05,129 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:14:13,200 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:13] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:14:13,277 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:13] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:14:19,408 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:19] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:14:19,416 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:19] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:14:19,439 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:19] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:14:47,398 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:14:47,446 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:14:47,446 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:14:47,446 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:14:48,273 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:14:48,344 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:14:48,344 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:14:49,064 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:49] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:14:49,131 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:49] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:14:55,760 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:55] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:14:55,769 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:55] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:14:55,790 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:14:55] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:15:13,615 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:15:13,665 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:15:13,667 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:15:13,667 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:15:14,395 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:15:14,442 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:15:14,446 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:15:16,885 - __main__ - INFO - User eltayep logged out
+2025-11-09 22:15:16,887 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-09 22:15:16,902 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:16] "GET /login HTTP/1.1" 200 -
+2025-11-09 22:15:16,985 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:16] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:15:16,986 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:16] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 22:15:23,647 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 22:15:23,652 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-09 22:15:23,663 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:23] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:15:23,697 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:23] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:15:31,924 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:31] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:15:31,933 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:31] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:15:31,951 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:15:31] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:16:07,848 - app - INFO - Database initialized successfully
+2025-11-09 22:16:07,863 - app - INFO - Database initialized successfully
+2025-11-09 22:46:04,442 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:46:04,568 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:46:04,568 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:46:04,568 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:46:05,329 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:46:05,359 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:46:05,359 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:46:10,653 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:46:10] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:46:10,767 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:46:10] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:46:17,355 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:46:17] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:46:17,364 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:46:17] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:46:17,385 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:46:17] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:47:07,199 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:47:07,310 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:47:07,310 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:47:07,310 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:47:08,040 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:47:08,070 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:47:08,070 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:47:10,181 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:10] "GET / HTTP/1.1" 200 -
+2025-11-09 22:47:10,271 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:10] "[36mGET /static/logo_car.png HTTP/1.1[0m" 304 -
+2025-11-09 22:47:10,272 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:10] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:47:10,311 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-09 22:47:11,666 - __main__ - INFO - User eltayep logged in successfully from 127.0.0.1
+2025-11-09 22:47:11,667 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:11] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-09 22:47:11,775 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:11] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:47:11,797 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:47:11] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:48:35,064 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:35] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-09 22:48:35,072 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:35] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:48:35,108 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:35] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:48:43,354 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:43] "[32mGET /region/Dammam HTTP/1.1[0m" 302 -
+2025-11-09 22:48:43,362 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:43] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:48:43,386 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:48:43] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:50:09,598 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:09] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-09 22:50:09,607 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:09] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:50:09,633 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:09] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:50:10,081 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:10] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
+2025-11-09 22:50:10,091 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:10] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:50:10,116 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:10] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:50:12,049 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:12] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-09 22:50:12,057 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:12] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:50:12,092 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:12] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:50:14,691 - __main__ - INFO - Excel exported for Najran by eltayep
+2025-11-09 22:50:14,725 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:50:14] "GET /export_excel?region=Najran HTTP/1.1" 200 -
+2025-11-09 22:51:01,666 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "[32mGET /region/Jeddah HTTP/1.1[0m" 302 -
+2025-11-09 22:51:01,675 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:51:01,696 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:51:01,822 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "[32mGET /region/Jeddah HTTP/1.1[0m" 302 -
+2025-11-09 22:51:01,831 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:51:01,855 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:51:01] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:53:22,079 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:53:22,423 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:53:24,373 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:53:24,473 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:53:24,479 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:53:33,288 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:33] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
+2025-11-09 22:53:33,408 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:33] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:53:33,486 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:33] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:53:37,573 - __main__ - INFO - 36 vehicles deleted by eltayep: IDs ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36']
+2025-11-09 22:53:37,573 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:37] "[32mPOST /delete_vehicles HTTP/1.1[0m" 302 -
+2025-11-09 22:53:37,601 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:37] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:53:37,643 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:53:37] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:53:42,328 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:53:42,521 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:53:43,923 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:53:43,971 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:53:43,971 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:53:56,221 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:53:56,384 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:53:57,797 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:53:57,853 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:53:57,853 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:54:06,955 - werkzeug - INFO -  * Detected change in 'E:\\hoshan_project\\project-vehicles-management\\app.py', reloading
+2025-11-09 22:54:07,148 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:54:08,582 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:54:08,641 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:54:08,649 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:54:21,541 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:21] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:21,616 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:21] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:33,763 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:54:33,811 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:54:33,811 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:54:33,811 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:54:34,671 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:54:34,710 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:54:34,710 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:54:41,977 - __main__ - INFO - 36 records imported and distributed by district. Asser: 4, Baha: 12, Jazan: 4, Najran: 16 by eltayep
+2025-11-09 22:54:41,983 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:41] "[32mPOST /import_excel HTTP/1.1[0m" 302 -
+2025-11-09 22:54:42,026 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:42] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:42,061 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:42] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:46,682 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:46] "[32mGET /region/Najran HTTP/1.1[0m" 302 -
+2025-11-09 22:54:46,700 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:46] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:46,737 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:46] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:49,144 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:49] "[32mGET /region/Jeddah HTTP/1.1[0m" 302 -
+2025-11-09 22:54:49,155 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:49] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:49,187 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:49] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:50,744 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:50] "[32mGET /region/Asser HTTP/1.1[0m" 302 -
+2025-11-09 22:54:50,755 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:50] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:50,776 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:50] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:51,527 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:51] "[32mGET /region/Jazan HTTP/1.1[0m" 302 -
+2025-11-09 22:54:51,534 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:51] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:51,555 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:51] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:52,643 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:52] "[32mGET /region/Baha HTTP/1.1[0m" 302 -
+2025-11-09 22:54:52,681 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:52] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:52,710 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:52] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:53,216 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "[32mGET /region/Riyadh HTTP/1.1[0m" 302 -
+2025-11-09 22:54:53,225 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:53,249 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:54:53,673 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "[32mGET /region/Dammam HTTP/1.1[0m" 302 -
+2025-11-09 22:54:53,680 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:54:53,698 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:54:53] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:56:11,138 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:56:11,190 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-09 22:56:11,190 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 22:56:11,190 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 22:56:11,938 - __main__ - INFO - Database initialized successfully
+2025-11-09 22:56:11,970 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 22:56:11,970 - werkzeug - INFO -  * Debugger PIN: 112-425-631
+2025-11-09 22:56:15,346 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:15] "[32mGET /region/ALL HTTP/1.1[0m" 302 -
+2025-11-09 22:56:15,378 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:15] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:56:15,442 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:15] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:56:19,788 - __main__ - INFO - 36 vehicles deleted by eltayep: IDs ['37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72']
+2025-11-09 22:56:19,788 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:19] "[32mPOST /delete_vehicles HTTP/1.1[0m" 302 -
+2025-11-09 22:56:19,805 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:19] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:56:19,843 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:19] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -
+2025-11-09 22:56:21,903 - __main__ - ERROR - Error restoring vehicles: table vehicles has no column named mobile
+2025-11-09 22:56:21,905 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:21] "[32mPOST /undo_delete_vehicles HTTP/1.1[0m" 302 -
+2025-11-09 22:56:21,907 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:21] "GET /home HTTP/1.1" 200 -
+2025-11-09 22:56:21,933 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:56:21] "[36mGET /static/hoshan_logo.png HTTP/1.1[0m" 304 -

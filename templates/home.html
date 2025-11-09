@@ -343,7 +343,7 @@
       </div>
       <div class="delete-modal-body" id="deleteModalMessage">
         Delete <strong id="deleteCount">0</strong> vehicle(s)?<br>
-        <small style="color: #666;">All data will be removed. You can undo immediately.</small>
+        <small style="color: #666;">This action cannot be undone.</small>
       </div>
       <div class="delete-modal-footer">
         <button class="delete-modal-btn delete-modal-btn-cancel" onclick="closeDeleteModal()">Cancel</button>
@@ -378,6 +378,18 @@
         <a href="{{ url_for('logout') }}" class="btn btn-light btn-sm ms-2">Logout</a>
       </div>
     </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     <!-- Stats -->
     <div class="row g-3 mb-3">
@@ -460,15 +472,6 @@
         🗑️ Delete Selected
       </button>
 
-      <!-- Undo Delete Button (controlled by server) -->
-      {% if show_undo %}
-      <form method="POST" action="/undo_delete_vehicles" style="display:inline;">
-        <button class="btn btn-warning btn-sm" type="submit">
-          ↩️ Undo Delete
-        </button>
-      </form>
-      {% endif %}
-
       <!-- Maintenance Request Dropdown -->
       <div class="dropdown">
         <button class="btn-text-only dropdown-toggle" type="button" id="maintenanceMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -495,7 +498,7 @@
         <thead>
           <tr>
             <th><input type="checkbox" id="select-all"></th>
-            <th><span class="header-badge">ID</span></th>
+            <th><span class="header-badge">#</span></th>
             <th><span class="header-badge">Plate</span></th>
             <th><span class="header-badge">Driver</span></th>
             <th><span class="header-badge">Status</span></th>
@@ -507,7 +510,7 @@
           {% for v in vehicles %}
           <tr class="vehicle-row" data-vehicle-id="{{ v[0] }}">
             <td><input type="checkbox" class="vehicle-checkbox" value="{{ v[0] }}"></td>
-            <td>{{ v[0] }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ v[1] }}</td>
             <td>{{ v[11] }}</td>
             <td>
