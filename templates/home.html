@@ -462,17 +462,14 @@
           <li><a class="dropdown-item" href="#" id="viewAction">👁 View Vehicle</a></li>
           <li><a class="dropdown-item" href="#" id="editAction">✏️ Edit Vehicle</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" id="uploadHOAction">� Upload Handover</a></li>
+          <li><a class="dropdown-item" href="#" id="uploadHOAction">📄 Upload Handover</a></li>
           <li><a class="dropdown-item" href="#" id="uploadIDAction">🪪 Upload Driver ID</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" id="returnVerificationAction">🔙 Go for Verification or Return Back</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" onclick="confirmDelete(); return false;">🗑️ Delete Selected</a></li>
         </ul>
       </div>
-
-      <!-- Delete Button (appears when vehicles selected) -->
-      <button class="btn btn-danger btn-sm" id="deleteButton" style="display:none;" onclick="confirmDelete()">
-        🗑️ Delete Selected
-      </button>
 
       <!-- Maintenance Request Dropdown -->
       <div class="dropdown">
