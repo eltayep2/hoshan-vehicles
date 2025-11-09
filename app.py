@@ -894,7 +894,38 @@ def import_excel():
         file.save(filepath)
 
         df = pd.read_excel(filepath)
-        df.columns = [str(col).strip().lower().replace(" ", "_").replace(".", "") for col in df.columns]
+        
+        # Column mapping (Excel columns to database columns)
+        column_mapping = {
+            'plate_number': ['plate_number', 'plate number', 'رقم اللوحة', 'no', 'no.'],
+            'vehicle_brand': ['vehicle_brand', 'brand', 'make', 'نوع السيارة', 'الماركة'],
+            'model_year': ['model_year', 'model', 'year', 'الموديل', 'السنة'],
+            'vehicle_supplier': ['vehicle_supplier', 'supplier', 'المورد'],
+            'vehicle_type': ['vehicle_type', 'type', 'النوع'],
+            'vehicle_color': ['vehicle_color', 'color', 'اللون'],
+            'vehicle_status': ['vehicle_status', 'status', 'الحالة'],
+            'district': ['district', 'location', 'المنطقة'],
+            'iqama_no': ['iqama_no', 'iqama', 'رقم الإقامة'],
+            'emp_no': ['emp_no', 'employee_no', 'رقم الموظف'],
+            'emp_name': ['emp_name', 'employee_name', 'driver_name', 'emp name', 'اسم الموظف', 'اسم السائق'],
+            'project': ['project', 'department', 'المشروع', 'القسم'],
+            'previous_user': ['previous_user', 'المستخدم السابق'],
+            'tamm_status': ['tamm_status', 'tamm', 'حالة تم'],
+            'remarks': ['remarks', 'notes', 'ملاحظات', 'last_maintenance']
+        }
+        
+        # Normalize Excel column names
+        normalized_cols = {}
+        for excel_col in df.columns:
+            excel_col_clean = str(excel_col).strip().lower().replace(" ", "_").replace(".", "")
+            for db_col, aliases in column_mapping.items():
+                if excel_col_clean in [a.lower().replace(" ", "_") for a in aliases]:
+                    normalized_cols[excel_col] = db_col
+                    break
+            if excel_col not in normalized_cols:
+                normalized_cols[excel_col] = excel_col_clean
+        
+        df = df.rename(columns=normalized_cols)
 
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
@@ -906,14 +937,13 @@ def import_excel():
 
         for _, row in df.iterrows():
             row_dict = dict(row)
-            if not any(str(v).strip() for v in row_dict.values()):
+            if not any(str(v).strip() for v in row_dict.values() if pd.notna(v)):
                 continue
 
             insert_cols = []
             values = []
             for col in table_cols:
-                key = col.lower()
-                val = row_dict.get(key)
+                val = row_dict.get(col)
 
                 if col == "last_modified":
                     val = now_str
