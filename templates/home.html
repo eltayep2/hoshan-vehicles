@@ -383,9 +383,9 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+          <div class="alert alert-{{ category }} alert-dismissible fade show flash-message" role="alert" style="font-size: 0.9rem; padding: 0.5rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         {% endfor %}
       {% endif %}
@@ -1009,6 +1009,17 @@
     if (e.key === 'Escape') {
       closeDeleteModal();
     }
+  });
+
+  // Auto-hide flash messages after 3 seconds
+  document.addEventListener('DOMContentLoaded', function() {
+    const flashMessages = document.querySelectorAll('.flash-message');
+    flashMessages.forEach(function(message) {
+      setTimeout(function() {
+        const bsAlert = new bootstrap.Alert(message);
+        bsAlert.close();
+      }, 3000);
+    });
   });
   </script>
 
