@@ -256,17 +256,11 @@ def home():
     region = session.get("region", "ALL")
     search_plate = request.form.get("search_plate", "").strip()
     
-    # Check if undo is still valid (within 5 minutes = 300 seconds)
-    show_undo = False
-    if session.get('show_undo') and session.get('delete_timestamp'):
-        elapsed = datetime.now().timestamp() - session.get('delete_timestamp')
-        if elapsed < 300:  # 5 minutes
-            show_undo = True
-        else:
-            # Clear expired undo data
-            session.pop('deleted_vehicles', None)
-            session.pop('delete_timestamp', None)
-            session.pop('show_undo', None)
+    # Clear any old session data
+    session.pop('deleted_vehicle_ids', None)
+    session.pop('deleted_vehicles', None)
+    session.pop('delete_timestamp', None)
+    session.pop('show_undo', None)
 
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -346,7 +340,6 @@ def home():
             modified=modified,
             search_plate=search_plate,
             regions=regions_list,
-            show_undo=show_undo,
         ))
         # Prevent caching to ensure page always reloads with fresh data
         response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
