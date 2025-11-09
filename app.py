@@ -759,11 +759,6 @@ def delete_vehicles():
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
         
-        # Store only IDs for undo (not full data - causes 502)
-        session['deleted_vehicle_ids'] = [int(vid) for vid in vehicle_ids]
-        session['delete_timestamp'] = datetime.now().timestamp()
-        session['show_undo'] = True
-        
         # Delete vehicles
         deleted_count = 0
         for vehicle_id in vehicle_ids:
