@@ -27,30 +27,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-
-# Production mode detection
-IS_PRODUCTION = os.environ.get('FLASK_ENV') == 'production'
-
-# Secret key configuration
-if IS_PRODUCTION:
-    # في Production: استخدم متغير بيئي أو مفتاح قوي
-    app.secret_key = os.environ.get('SECRET_KEY', 'CHANGE_THIS_TO_STRONG_SECRET_KEY_IN_PRODUCTION')
-else:
-    # في Development: مفتاح تطوير
-    app.secret_key = 'hoshan_dev_secret_key'
+app.secret_key = os.environ.get('SECRET_KEY', 'hoshan_secret_key_change_in_production')
 
 # Security settings
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-# Base directory and paths
 BASE_DIR = os.path.dirname(__file__)
 DB_DIR = os.path.join(BASE_DIR, "database")
 os.makedirs(DB_DIR, exist_ok=True)
 DB_PATH = os.path.join(DB_DIR, "vehicles.db")
-
-# Log startup mode
-logger.info(f"Starting app in {'PRODUCTION' if IS_PRODUCTION else 'DEVELOPMENT'} mode")
-logger.info(f"Database path: {DB_PATH}")
 
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -894,38 +879,7 @@ def import_excel():
         file.save(filepath)
 
         df = pd.read_excel(filepath)
-        
-        # Column mapping (Excel columns to database columns)
-        column_mapping = {
-            'plate_number': ['plate_number', 'plate number', 'رقم اللوحة', 'no', 'no.'],
-            'vehicle_brand': ['vehicle_brand', 'brand', 'make', 'نوع السيارة', 'الماركة'],
-            'model_year': ['model_year', 'model', 'year', 'الموديل', 'السنة'],
-            'vehicle_supplier': ['vehicle_supplier', 'supplier', 'المورد'],
-            'vehicle_type': ['vehicle_type', 'type', 'النوع'],
-            'vehicle_color': ['vehicle_color', 'color', 'اللون'],
-            'vehicle_status': ['vehicle_status', 'status', 'الحالة'],
-            'district': ['district', 'location', 'المنطقة'],
-            'iqama_no': ['iqama_no', 'iqama', 'رقم الإقامة'],
-            'emp_no': ['emp_no', 'employee_no', 'رقم الموظف'],
-            'emp_name': ['emp_name', 'employee_name', 'driver_name', 'emp name', 'اسم الموظف', 'اسم السائق'],
-            'project': ['project', 'department', 'المشروع', 'القسم'],
-            'previous_user': ['previous_user', 'المستخدم السابق'],
-            'tamm_status': ['tamm_status', 'tamm', 'حالة تم'],
-            'remarks': ['remarks', 'notes', 'ملاحظات', 'last_maintenance']
-        }
-        
-        # Normalize Excel column names
-        normalized_cols = {}
-        for excel_col in df.columns:
-            excel_col_clean = str(excel_col).strip().lower().replace(" ", "_").replace(".", "")
-            for db_col, aliases in column_mapping.items():
-                if excel_col_clean in [a.lower().replace(" ", "_") for a in aliases]:
-                    normalized_cols[excel_col] = db_col
-                    break
-            if excel_col not in normalized_cols:
-                normalized_cols[excel_col] = excel_col_clean
-        
-        df = df.rename(columns=normalized_cols)
+        df.columns = [str(col).strip().lower().replace(" ", "_").replace(".", "") for col in df.columns]
 
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
@@ -937,19 +891,25 @@ def import_excel():
 
         for _, row in df.iterrows():
             row_dict = dict(row)
-            if not any(str(v).strip() for v in row_dict.values() if pd.notna(v)):
+            
+            # Skip only if ALL values are empty/NaN
+            if not any(pd.notna(v) and str(v).strip() for v in row_dict.values()):
                 continue
 
             insert_cols = []
             values = []
             for col in table_cols:
-                val = row_dict.get(col)
+                val = row_dict.get(col)  # Direct column name match
 
                 if col == "last_modified":
-                    val = now_str
+                    val = None  # Set to None for new imports
                 elif col == "region":
                     val = target_region
                 elif col in ["handover_pdf", "driver_id_pdf"]:
+                    val = None
+                    
+                # Convert pandas NaN to None
+                if pd.isna(val):
                     val = None
 
                 insert_cols.append(col)
@@ -957,33 +917,8 @@ def import_excel():
 
             placeholders = ",".join(["?"] * len(insert_cols))
             cols_sql = ",".join(insert_cols)
-            
-            # Get plate number from row
-            plate = row_dict.get('plate_number')
-            if plate and pd.notna(plate) and str(plate).strip():
-                plate_str = str(plate).strip()
-                
-                # Check if exists
-                c.execute("SELECT id FROM vehicles WHERE plate_number=?", (plate_str,))
-                existing = c.fetchone()
-                
-                if existing:
-                    # Update existing record
-                    update_parts = [f"{col}=?" for col in insert_cols if col != 'plate_number']
-                    update_values = [v for col, v in zip(insert_cols, values) if col != 'plate_number']
-                    update_values.append(plate_str)
-                    c.execute(f"UPDATE vehicles SET {','.join(update_parts)} WHERE plate_number=?", update_values)
-                    logger.debug(f"Updated vehicle: {plate_str}")
-                else:
-                    # Insert new record
-                    c.execute(f"INSERT INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
-                    logger.debug(f"Inserted vehicle: {plate_str}")
-                
-                inserted += 1
-            else:
-                # Skip rows without plate number
-                logger.debug(f"Skipping row without plate_number")
-                continue
+            c.execute(f"INSERT INTO vehicles ({cols_sql}) VALUES ({placeholders})", values)
+            inserted += 1
 
         conn.commit()
         logger.info(f"{inserted} records imported to {target_region} by {session.get('emp_no')}")
@@ -1326,8 +1261,4 @@ def bulk_delete():
 # run
 # =========================
 if __name__ == "__main__":
-    # في Production: لا تشغل بـ debug mode
-    if IS_PRODUCTION:
-        app.run()
-    else:
-        app.run(debug=True, host='127.0.0.1', port=5000)
+    app.run(debug=True)
